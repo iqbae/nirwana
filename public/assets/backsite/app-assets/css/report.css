@@ -1,0 +1,23 @@
+table, th, td {
+    border:1px solid black;
+    border-collapse: collapse;
+  }
+  body{
+      font-family:Arial, Helvetica, sans-serif;
+  }
+  #isi{
+      font-size: 8pt;
+  }
+  #isit{
+      font-size: 9pt;
+  }
+  #title{
+      float: none;
+      font-weight: bold;
+      text-transform: capitalize;
+      color: #000;
+      margin-bottom: 4px;
+      font-size: 12pt;
+      text-decoration: none;
+      text-align: center;
+  }
