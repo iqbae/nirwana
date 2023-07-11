@@ -32,7 +32,7 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item">Specialist</li>
+                                <li class="breadcrumb-item">Spesialis</li>
                                 <li class="breadcrumb-item active">Edit</li>
                             </ol>
                         </div>
@@ -71,7 +71,7 @@
                                                     <h4 class="form-section"><i class="fa fa-edit"></i> Form Specialist</h4>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="name">Name <code style="color:red;">required</code></label>
+                                                        <label class="col-md-3 label-control" for="name">Name <code style="color:red;">diperlukan</code></label> 
                                                         <div class="col-md-9 mx-auto">
                                                             <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology" value="{{ old('name', isset($specialist) ? $specialist->name : '') }}" autocomplete="off" required>
 
@@ -82,7 +82,7 @@
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="price">Price <code style="color:red;">required</code></label>
+                                                        <label class="col-md-3 label-control" for="price">Price <code style="color:red;">diperlukan</code></label>
                                                         <div class="col-md-9 mx-auto">
                                                             <input type="text" id="price" name="price" class="form-control" placeholder="example price 10000" value="{{ old('price', isset($specialist) ? $specialist->price : '') }}" autocomplete="off" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'IDR ', 'placeholder': '0'" required>
 

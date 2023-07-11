@@ -53,7 +53,7 @@
                         @can('specialist_access')
                             <li class="{{ request()->is('backsite/specialist') || request()->is('backsite/specialist/*') || request()->is('backsite/*/specialist') || request()->is('backsite/*/specialist/*') ? 'active' : '' }} ">
                                 <a class="menu-item" href="{{ route('backsite.specialist.index') }}">
-                                    <i></i><span>Specialist</span>
+                                    <i></i><span>Spesialis</span>
                                 </a>
                             </li>
                         @endcan

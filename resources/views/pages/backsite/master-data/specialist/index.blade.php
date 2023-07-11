@@ -5,7 +5,7 @@
 
 @section('content')
 
-<!-- BEGIN: Content-->
+    <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
@@ -28,12 +28,13 @@
             {{-- breadcumb --}}
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Specialist</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Spesialis</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('backsite.dashboard.index') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Specialist</li>
+                                <li class="breadcrumb-item"><a href="{{ route('backsite.dashboard.index') }}">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">Spesialis</li>
                             </ol>
                         </div>
                     </div>
@@ -50,8 +51,9 @@
                                 <div class="card">
                                     <div class="card-header bg-success text-white">
                                         <a data-action="collapse">
-                                            <h4 class="card-title text-white">Add Data</h4>
-                                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                            <h4 class="card-title text-white">Tambah Data</h4>
+                                            <a class="heading-elements-toggle"><i
+                                                    class="la la-ellipsis-v font-medium-3"></i></a>
                                             <div class="heading-elements">
                                                 <ul class="list-inline mb-0">
                                                     <li><a data-action="collapse"><i class="ft-plus"></i></a></li>
@@ -64,33 +66,45 @@
                                     <div class="card-content collapse hide">
                                         <div class="card-body card-dashboard">
 
-                                            <form class="form form-horizontal" action="{{ route('backsite.specialist.store') }}" method="POST" enctype="multipart/form-data">
+                                            <form class="form form-horizontal" action="{{ route('backsite.specialist.store') }}"
+                                                method="POST" enctype="multipart/form-data">
 
                                                 @csrf
 
                                                 <div class="form-body">
                                                     <div class="form-section">
-                                                        <p>Lengkapi input yang<code>diperlukan</code>, sebelum Anda mengklik tombol kirim.</p>
+                                                        <p>Lengkapi input yang<code>diperlukan</code>, sebelum Anda mengklik
+                                                            tombol kirim.</p>
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="name">Name <code style="color:red;">required</code></label>
+                                                        <label class="col-md-3 label-control" for="name">Nama <code
+                                                                style="color:red;">diperlukan</code></label>
                                                         <div class="col-md-9 mx-auto">
-                                                            <input type="text" id="name" name="name" class="form-control" placeholder="example dentist dermatology" value="{{old('name')}}" autocomplete="off" required>
+                                                            <input type="text" id="name" name="name"
+                                                                class="form-control" placeholder="example dentist dermatology"
+                                                                value="{{ old('name') }}" autocomplete="off" required>
 
-                                                            @if($errors->has('name'))
-                                                                <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
+                                                            @if ($errors->has('name'))
+                                                                <p style="font-style: bold; color: red;">
+                                                                    {{ $errors->first('name') }}</p>
                                                             @endif
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="price">Price <code style="color:red;">required</code></label>
+                                                        <label class="col-md-3 label-control" for="price">Tarif <code
+                                                                style="color:red;">diperlukan</code></label>
                                                         <div class="col-md-9 mx-auto">
-                                                            <input type="text" id="price" name="price" class="form-control" placeholder="example price 10000" value="{{old('price')}}" autocomplete="off" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'IDR ', 'placeholder': '0'" required>
+                                                            <input type="text" id="price" name="price"
+                                                                class="form-control" placeholder="example price 10000"
+                                                                value="{{ old('price') }}" autocomplete="off"
+                                                                data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'IDR ', 'placeholder': '0'"
+                                                                required>
 
-                                                            @if($errors->has('price'))
-                                                                <p style="font-style: bold; color: red;">{{ $errors->first('price') }}</p>
+                                                            @if ($errors->has('price'))
+                                                                <p style="font-style: bold; color: red;">
+                                                                    {{ $errors->first('price') }}</p>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -98,7 +112,8 @@
                                                 </div>
 
                                                 <div class="form-actions text-right">
-                                                    <button type="submit" style="width:120px;" class="btn btn-cyan" onclick="return confirm('Are you sure want to save this data ?')">
+                                                    <button type="submit" style="width:120px;" class="btn btn-cyan"
+                                                        onclick="return confirm('Are you sure want to save this data ?')">
                                                         <i class="la la-check-square-o"></i> Submit
                                                     </button>
                                                 </div>
@@ -123,11 +138,12 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Specialist List</h4>
+                                        <h4 class="card-title">Daftar Spesialis</h4>
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
-                                                <li><a href="specialist/create" target="_blank" class="btn btn-outline-secondary">Export PDF</a></li>
+                                                <li><a href="specialist/create" target="_blank"
+                                                        class="btn btn-outline-secondary">Export PDF</a></li>
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                                 <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
@@ -139,32 +155,37 @@
                                         <div class="card-body card-dashboard">
 
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered text-inputs-searching default-table">
+                                                <table
+                                                    class="table table-striped table-bordered text-inputs-searching default-table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Date</th>
-                                                            <th>Name</th>
-                                                            <th>Price</th>
-                                                            <th style="text-align:center; width:150px;">Action</th>
+                                                            <th>Tanggal</th>
+                                                            <th>Nama</th>
+                                                            <th>Tarif</th>
+                                                            <th style="text-align:center; width:150px;">Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @forelse($specialist as $key => $specialist_item)
                                                             <tr data-entry-id="{{ $specialist_item->id }}">
-                                                                <td>{{ isset($specialist_item->created_at) ? date("d/m/Y H:i:s",strtotime($specialist_item->created_at)) : '' }}</td>
+                                                                <td>{{ isset($specialist_item->created_at) ? date('d/m/Y H:i:s', strtotime($specialist_item->created_at)) : '' }}
+                                                                </td>
                                                                 <td>{{ $specialist_item->name ?? '' }}</td>
-                                                                <td>{{ 'IDR '.number_format($specialist_item->price) ?? '' }}</td>
+                                                                <td>{{ 'IDR ' . number_format($specialist_item->price) ?? '' }}
+                                                                </td>
                                                                 <td class="text-center">
 
                                                                     <div class="btn-group mr-1 mb-1">
-                                                                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                                                        <button type="button"
+                                                                            class="btn btn-info btn-sm dropdown-toggle"
+                                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                                            aria-expanded="false">Aksi</button>
                                                                         <div class="dropdown-menu">
 
                                                                             @can('specialist_show')
                                                                                 <a href="#mymodal"
                                                                                     data-remote="{{ route('backsite.specialist.show', $specialist_item->id) }}"
-                                                                                    data-toggle="modal"
-                                                                                    data-target="#mymodal"
+                                                                                    data-toggle="modal" data-target="#mymodal"
                                                                                     data-title="Specialist Detail"
                                                                                     class="dropdown-item">
                                                                                     Show
@@ -172,16 +193,23 @@
                                                                             @endcan
 
                                                                             @can('specialist_edit')
-                                                                                <a class="dropdown-item" href="{{ route('backsite.specialist.edit', $specialist_item->id) }}">
+                                                                                <a class="dropdown-item"
+                                                                                    href="{{ route('backsite.specialist.edit', $specialist_item->id) }}">
                                                                                     Edit
                                                                                 </a>
                                                                             @endcan
 
                                                                             @can('specialist_delete')
-                                                                                <form action="{{ route('backsite.specialist.destroy', $specialist_item->id) }}" method="POST" onsubmit="return confirm('Are you sure want to delete this data ?');">
-                                                                                    <input type="hidden" name="_method" value="DELETE">
-                                                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                    <input type="submit" class="dropdown-item" value="Delete">
+                                                                                <form
+                                                                                    action="{{ route('backsite.specialist.destroy', $specialist_item->id) }}"
+                                                                                    method="POST"
+                                                                                    onsubmit="return confirm('Are you sure want to delete this data ?');">
+                                                                                    <input type="hidden" name="_method"
+                                                                                        value="DELETE">
+                                                                                    <input type="hidden" name="_token"
+                                                                                        value="{{ csrf_token() }}">
+                                                                                    <input type="submit" class="dropdown-item"
+                                                                                        value="Delete">
                                                                                 </form>
                                                                             @endcan
 
@@ -215,7 +243,7 @@
 
         </div>
     </div>
-<!-- END: Content-->
+    <!-- END: Content-->
 
 @endsection
 
@@ -226,8 +254,8 @@
     <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/bindings/inputmask.binding.js') }}"></script>
 
     <script>
-        jQuery(document).ready(function($){
-            $('#mymodal').on('show.bs.modal', function(e){
+        jQuery(document).ready(function($) {
+            $('#mymodal').on('show.bs.modal', function(e) {
                 var button = $(e.relatedTarget);
                 var modal = $(this);
 
@@ -235,23 +263,26 @@
                 modal.find('.modal-title').html(button.data("title"));
             });
 
-            $('.select-all').click(function () {
+            $('.select-all').click(function() {
                 let $select2 = $(this).parent().siblings('.select2-full-bg')
                 $select2.find('option').prop('selected', 'selected')
                 $select2.trigger('change')
             })
 
-            $('.deselect-all').click(function () {
+            $('.deselect-all').click(function() {
                 let $select2 = $(this).parent().siblings('.select2-full-bg')
                 $select2.find('option').prop('selected', '')
                 $select2.trigger('change')
             })
         });
 
-        $('.default-table').DataTable( {
+        $('.default-table').DataTable({
             "order": [],
             "paging": true,
-            "lengthMenu": [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"] ],
+            "lengthMenu": [
+                [5, 10, 25, 50, 100, -1],
+                [5, 10, 25, 50, 100, "All"]
+            ],
             "pageLength": 10
         });
 

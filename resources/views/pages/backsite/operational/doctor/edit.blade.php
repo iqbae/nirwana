@@ -64,7 +64,7 @@
                                         <form class="form form-horizontal" action="{{ route("backsite.doctor.update", [$doctor->id]) }}" method="POST" enctype="multipart/form-data">
 
                                                 @method('PUT')
-                                                @csrf
+                                            @csrf
 
                                                 <div class="form-body">
 
