@@ -68,9 +68,9 @@
                                                 <table class="table table-striped table-bordered text-inputs-searching default-table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Date Registered</th> 
-                                                            {{--  <th>Doctor</th>  --}}
-                                                            <th>Patient Name</th>
+                                                            <th>Terdaftar</th> 
+                                                            <th>Nama Pasien</th>
+                                                            <th>Dokter</th>
                                                             {{--  <th>Consultation</th>  --}}
                                                             {{--  <th>Level</th>  --}}
                                                             {{--  <th>Date</th>  --}}
@@ -85,7 +85,7 @@
                                                             {{--  <td>{{ $patient_item->doctor->name ?? '' }}</td>  --}}
                                                             <td>{{ $patient_item->name ?? '' }}</td>
                                                             {{--  <td>{{ $patient_item->consultation->name ?? '' }}</td>  --}}
-                                                            
+                                                            <td>{{ $patient_item->doctor->name ?? '' }}</td>
                                                                 
                                                             </tr>
                                                         @empty

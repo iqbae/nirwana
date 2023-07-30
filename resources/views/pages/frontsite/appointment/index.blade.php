@@ -89,12 +89,11 @@
                             name="level_id"
                             id="level_id"
                             class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                            placeholder="Level" required
+                            placeholder="Layanan" required
                         >
-                            <option value="" disabled selected class="hidden">Level</option>
-                            <option value="1">Low</option>
-                            <option value="2">Medium</option>
-                            <option value="3">High</option>
+                            <option value="" disabled selected class="hidden">Layanan</option>
+                            <option value="1">Umum</option>
+                            <option value="2">BPJS</option>
                         </select>
                     </label>
 
@@ -104,7 +103,7 @@
                             id="date"
                             name="date"
                             class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0EFB71]"
-                            placeholder="Choose Date" required
+                            placeholder="Pilih Hari" required
                         />
                             <span
                             class="absolute top-0 right-[11px] bottom-1/2 translate-y-[58%]"
@@ -146,14 +145,14 @@
                             </svg>
                         </span>
                     </label>
-
+                    
                     <label class="relative block">
                         <input
                             type="text"
                             id="time"
                             name="time"
                             class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                            placeholder="Choose Time" required
+                            placeholder="Pilih waktu" required
                         />
                         <span
                         class="absolute top-0 right-[11px] bottom-1/2 translate-y-[58%]"

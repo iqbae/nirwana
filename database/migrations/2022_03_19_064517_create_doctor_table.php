@@ -19,6 +19,12 @@ class CreateDoctorTable extends Migration
             $table->string('name');
             $table->string('fee');
             $table->longText('photo')->nullable();
+            $table->string('senin')->nullable();
+            $table->string('selasa')->nullable();
+            $table->string('rabu')->nullable();
+            $table->string('kamis')->nullable();
+            $table->string('jumat')->nullable();
+            $table->string('sabtu')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

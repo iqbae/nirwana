@@ -33,6 +33,11 @@ class TypeUserSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [
+                'name' => 'Staff Hospital',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         // this array $type_user will be insert to table 'type_user'

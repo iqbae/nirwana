@@ -47,6 +47,8 @@ class HospitalPatientController extends Controller
                                     return $query->where('type_user_id', 3);
                                 })->orderBy('created_at', 'desc')->get();
 
+        $doctor = Doctor::orderBy('created_at', 'desc')->get();
+
         return view('pages.backsite.operational.hospital-patient.index', compact('hospital_patient'));
     }
 
@@ -62,6 +64,7 @@ class HospitalPatientController extends Controller
         $hospital_patient = User::whereHas('detail_user', function ($query) {
                                     return $query->where('type_user_id', 3);
                                 })->orderBy('created_at', 'desc')->get();
+        
 
         return view('pages.backsite.operational.hospital-patient.create', compact('hospital_patient'));
     }

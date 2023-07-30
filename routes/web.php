@@ -32,7 +32,7 @@ use App\Http\Controllers\Backsite\ReportTransactionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('jadwal', [LandingController::class, 'jadwal'])->name('landing.jadwal');
 Route::resource('/', LandingController::class);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
@@ -79,16 +79,14 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('consultation', ConsultationController::class);
 
     // doctor
-    Route::resource('doctor', DoctorController::class);
-    
     // Route::get('/doctor/cetak', DoctorController::class, 'doctor.cetak');
-    
-   
-        
+    Route::resource('doctor', DoctorController::class);
+            
     // hospital patient
     Route::resource('hospital_patient', HospitalPatientController::class);
 
     // report appointment
+    
     Route::resource('appointment', ReportAppointmentController::class);
 
     // report transaction

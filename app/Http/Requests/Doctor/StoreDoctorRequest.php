@@ -41,6 +41,24 @@ class StoreDoctorRequest extends FormRequest
             'photo' => [
                 'nullable', 'mimes:jpeg,svg,png', 'max:10000',
             ],
+            'senin' => [
+                'nullable', 'string', 'max:100',
+            ],
+            'selasa' => [
+                'nullable', 'string', 'max:100',
+            ],
+            'rabu' => [
+                'nullable', 'string', 'max:100',
+            ],
+            'kamis' => [
+                'nullable', 'string', 'max:100',
+            ],
+            'jumat' => [
+                'nullable', 'string', 'max:100',
+            ],
+            'sabtu' => [
+                'nullable', 'string', 'max:100',
+            ],
         ];
     }
 }

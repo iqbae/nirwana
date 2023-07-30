@@ -4,7 +4,7 @@
 @section('title', 'Edit - Appointment')
 
 @section('content')
-<!-- BEGIN: Content-->
+    <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
@@ -41,7 +41,8 @@
             </div>
 
             {{-- forms --}}
-            <div class="content-body"><!-- Basic form layout section start -->
+            <div class="content-body">
+                <!-- Basic form layout section start -->
                 <section id="horizontal-form-layouts">
                     <div class="row">
                         <div class="col-md-12">
@@ -59,114 +60,131 @@
                                 <div class="card-content collpase show">
                                     <div class="card-body">
                                         <div class="card-text">
-                                            <p>Lengkapi input yang<code>diperlukan</code>, sebelum Anda mengklik tombol kirim.</p>
+                                            <p>Lengkapi input yang<code>diperlukan</code>, sebelum Anda mengklik tombol
+                                                kirim.</p>
                                         </div>
-                                        <form class="form form-horizontal" method="POST">
-                                            {{--  action="{{ route("backsite.appointment.update", [$appointment->id]) }}" method="POST" enctype="multipart/form-data  --}}
-                                        <div class="form-body">
+                                        <form class="form form-horizontal" method="POST"> action="{{ route("backsite.appointment.update", [$appointment->id]) }}" enctype="multipart/form-data" >  
+
+
+                                        <div class="form-Pbody">
+
+                                            @method('PUT')
+                                            @csrf
 
                                             <h4 class="form-section"><i class="fa fa-edit"></i> Form Appointment</h4>
 
                                             <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="name">Nama Pasien </label>
+                                                <label class="col-md-3 label-control" for="name">Nama Pasien</label>
                                                 <div class="col-md-9 mx-auto">
-                                                    
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology"  autocomplete="off" required>
-                                                    {{--  value="{{ old('name', isset($appointment) ? $appointment->id : '') }}"  --}}
-                                                    {{--  @if($errors->has('name'))
-                                                        <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                    @endif  --}}
+
+                                                    <input type="text" id="name" name="name" class="form-control"
+                                                        placeholder="name" value="{{old (isset($appointment))}}" autocomplete="off" disabled
+                                                        readonly>
+
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="name">Nama Dokter <code style="color:green;">optional</code></label>
+                                                <label class="col-md-3 label-control" for="name">Nama Dokter </label>
                                                 <div class="col-md-9 mx-auto">
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology" autocomplete="off" required>
+                                                    <input type="text" id="name" name="name" class="form-control"
+                                                        placeholder="example dentist or dermatology"
+                                                        value="{{ old('name', isset($appointment)) }}" autocomplete="off"
+                                                        disabled readonly>
 
-                                                    {{--  @if($errors->has('name'))
-                                                        <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                    @endif  --}}
+
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="name">Konsultasi <code style="color:green;">optional</code></label>
+                                                <label class="col-md-3 label-control" for="name">Konsultasi</label>
                                                 <div class="col-md-9 mx-auto">
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology" autocomplete="off" required>
+                                                    <input type="text" id="name" name="name" class="form-control"
+                                                        value="{{ old('kon', isset($consultation))}}" autocomplete="off"
+                                                        disabled readonly>
 
-                                                    {{--  @if($errors->has('name'))
-                                                        <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                    @endif  --}}
+
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="name">Level <code style="color:green;">optional</code></label>
-                                                <div class="col-md-9 mx-auto">
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology" autocomplete="off" required>
-
-                                                    {{--  @if($errors->has('name'))
-                                                        <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                    @endif  --}}
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="name">Tanggal <code style="color:green;">optional</code></label>
-                                                <div class="col-md-9 mx-auto">
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology" autocomplete="off" required>
-
-                                                    {{--  @if($errors->has('name'))
-                                                        <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                    @endif  --}}
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="name">Jam <code style="color:green;">optional</code></label>
-                                                <div class="col-md-9 mx-auto">
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology" autocomplete="off" required>
-
-                                                    {{--  @if($errors->has('name'))
-                                                        <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                    @endif  --}}
-                                                </div>
-                                            </div>                                            
 
 
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="name">Status <code style="color:green;">optional</code></label>
-                                                <div class="col-md-9 mx-auto">
-                                                    <input type="text" id="name" name="name" class="form-control" placeholder="example dentist or dermatology" autocomplete="off" required>
-
-                                                    {{--  @if($errors->has('name'))
-                                                        <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                    @endif  --}}
-                                                </div>
-                                            </div>
-
+                                        
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="name">Layanan <code
+                                                style="color:green;">optional</code></label>
+                                        <div class="col-md-9 mx-auto">
+                                            <select class="form-control" required>
+                                                <option selected>Pilihan layanan</option>
+                                                <option value="1">Umum</option>
+                                                <option value="2">BPJS</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="name">Tanggal <code
+                                                style="color:green;">optional</code></label>
+                                        <div class="col-md-9 mx-auto">
+                                            <input type="text" id="name" name="name" class="form-control"
+                                                placeholder="example dentist or dermatology" autocomplete="off" required>
 
 
                                         </div>
-                                        </form> 
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="name">Jam <code
+                                                style="color:green;">optional</code></label>
+                                        <div class="col-md-9 mx-auto">
+                                            <input type="text" id="name" name="name" class="form-control"
+                                                placeholder="example dentist or dermatology" autocomplete="off" required>
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="name">Status <code
+                                                style="color:green;">optional</code></label>
+                                        <div class="col-md-9 mx-auto">
+                                            <input type="text" id="name" name="name" class="form-control"
+                                                placeholder="example dentist or dermatology" autocomplete="off" required>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="name">Status <code
+                                                style="color:green;">optional</code></label>
+                                        <div class="col-md-9 mx-auto">
+                                            <select class="form-control" for="status" id="status">
+                                                <option selected>Status Bayar</option>
+                                                <option value="1">Sudah Bayar</option>
+                                                <option value="2">Belum Bayar</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
+
+                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </section>
             </div>
-
         </div>
+        </section>
     </div>
-<!-- END: Content-->
+
+    </div>
+    </div>
+    <!-- END: Content-->
 
 @endsection
 
 
 @push('after-script')
-
     {{-- inputmask --}}
     <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/jquery.inputmask.js') }}"></script>
     <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/inputmask.js') }}"></script>
@@ -177,5 +195,4 @@
             $(":input").inputmask();
         });
     </script>
-
 @endpush

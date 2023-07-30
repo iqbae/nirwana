@@ -27,6 +27,12 @@ class Doctor extends Model
         'name',
         'fee',
         'photo',
+        'senin',
+        'selasa',
+        'rabu',
+        'kamis',
+        'jumat',
+        'sabtu',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -45,4 +51,5 @@ class Doctor extends Model
         // 2 parameter (path model, field foreign key)
         return $this->hasMany('App\Models\Operational\Appointment', 'doctor_id');
     }
+
 }

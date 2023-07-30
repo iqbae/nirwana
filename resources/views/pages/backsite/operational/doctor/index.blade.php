@@ -50,7 +50,7 @@
                                 <div class="card">
                                     <div class="card-header bg-success text-white">
                                         <a data-action="collapse">
-                                            <h4 class="card-title text-white">Add Data</h4>
+                                            <h4 class="card-title text-white">Tambah Dokter</h4>
                                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                             <div class="heading-elements">
                                                 <ul class="list-inline mb-0">
@@ -129,7 +129,79 @@
 
                                                         </div>
                                                     </div>
+                                                    {{--  start jadwal & col  --}}
+                                                    <div class="card-header">
+                                                        <h4 class="card-title" id="horz-layout-basic">Jadwal Praktik</h4>
+                                                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                                        </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="senin">Senin <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="senin" name="senin" class="form-control" placeholder="example john doe or jane doe" value="{{old('senin')}}" autocomplete="off" >
 
+                                                                    @if($errors->has('senin'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('senin') }}</p>
+                                                                    @endif
+                                                                    
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="selasa">selasa <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="selasa" name="selasa" class="form-control" placeholder="example john doe or jane doe" value="{{old('selasa')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('selasa'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('selasa') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="rabu">rabu <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="rabu" name="rabu" class="form-control" placeholder="example john doe or jane doe" value="{{old('rabu')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('rabu'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('rabu') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="kamis">kamis <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="kamis" name="kamis" class="form-control" placeholder="example john doe or jane doe" value="{{old('kamis')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('kamis'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('kamis') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="jumat">jumat <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="jumat" name="jumat" class="form-control" placeholder="example john doe or jane doe" value="{{old('jumat')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('jumat'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('jumat') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="sabtu">sabtu <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="sabtu" name="sabtu" class="form-control" placeholder="example john doe or jane doe" value="{{old('sabtu')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('sabtu'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('sabtu') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                    
+                                                    {{--  end col  --}}
                                                 </div>
 
                                                 <div class="form-actions text-right">
@@ -158,7 +230,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Specialist List</h4>
+                                        <h4 class="card-title">Daftar Specialis</h4>
 
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
@@ -233,7 +305,7 @@
                                                             {{-- not found --}}
                                                         @endforelse
                                                     </tbody>
-                                                    <tfoot>
+                                                    {{--  <tfoot>
                                                         <tr>
                                                             <th>Date</th>
                                                             <th>Specialist</th>
@@ -242,7 +314,85 @@
                                                             <th>Photo</th>
                                                             <th style="text-align:center; width:150px;">Action</th>
                                                         </tr>
-                                                    </tfoot>
+                                                    </tfoot>  --}}
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            @endcan
+
+
+
+            {{-- table card --}}
+            @can('doctor_table')
+                <div class="content-body">
+                    <section id="table-home">
+                        <!-- Zero configuration table -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header  text-warning bg-warning bg-lighten-3">
+                                        <h4 class="card-title">Jadwal Praktik Dokter</h4>
+
+                                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline mb-0">
+                                                <li><a href="doctor/create" target="_blank" class="btn btn-outline-warning">Export PDF</a></li>
+                                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                                <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-content collapse show">
+                                        <div class="card-body card-dashboard">
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered text-inputs-searching default-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Senin</th>
+                                                            <th>Selasa</th>
+                                                            <th>Rabu</th>
+                                                            <th>Kamis</th>
+                                                            <th>Jumat</th>
+                                                            <th>Sabtu</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse($doctor as $key => $doctor_item)
+                                                            <tr data-entry-id="{{ $doctor_item->id }}">
+                                                               <td>{{ $doctor_item->name ?? '' }}</td>
+                                                                <td>{{ $doctor_item->senin ?? '' }}</td>
+                                                                <td>{{ $doctor_item->selasa ?? '' }}</td>
+                                                                <td>{{ $doctor_item->rabu ?? '' }}</td>
+                                                                <td>{{ $doctor_item->kamis ?? '' }}</td>
+                                                                <td>{{ $doctor_item->jumat ?? '' }}</td>
+                                                                <td>{{ $doctor_item->sabtu ?? '' }}</td>
+                                                            </tr>
+                                                        @empty
+                                                            {{-- not found --}}
+                                                        @endforelse
+                                                    </tbody>
+                                                    {{--  <tfoot>
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Senin</th>
+                                                            <th>Selasa</th>
+                                                            <th>Rabu</th>
+                                                            <th>Kamis</th>
+                                                            <th>Jumat</th>
+                                                            <th>Sabtu</th>
+                                                        </tr>
+                                                    </tfoot>  --}}
                                                 </table>
                                             </div>
 

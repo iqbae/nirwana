@@ -92,43 +92,42 @@
                                                                 <td>{{ $appointment_item->consultation->name ?? '' }}</td>
                                                                 <td>
                                                                     @if($appointment_item->level == 1)
-                                                                        <span class="badge badge-info">{{ 'Low' }}</span>
+                                                                        <span class="badge badge-info">{{ 'Umum' }}</span>
                                                                     @elseif($appointment_item->level == 2)
-                                                                        <span class="badge badge-warning">{{ 'Medium' }}</span>
-                                                                    @elseif($appointment_item->level == 3)
-                                                                        <span class="badge badge-danger">{{ 'High' }}</span>
+                                                                        <span class="badge badge-warning">{{ 'BPJS' }}</span>
                                                                     @endif
                                                                 </td>
                                                                 <td>{{ isset($appointment_item->date) ? date("d/m/Y",strtotime($appointment_item->date)) : '' }}</td>
                                                                 <td>{{ isset($appointment_item->time) ? date("H:i:s",strtotime($appointment_item->time)) : '' }}</td>
                                                                 <td>
                                                                     @if($appointment_item->status == 1)
-                                                                        <span class="badge badge-success">{{ 'Payment Completed' }}</span>
+                                                                        <span class="badge badge-success">{{ 'Sudah Bayar' }}</span>
                                                                     @elseif($appointment_item->status == 2)
-                                                                        <span class="badge badge-warning">{{ 'Waiting Payment' }}</span>
+                                                                        <span class="badge badge-warning">{{ 'Belum Bayar' }}</span>
                                                                     @else
                                                                         <span>{{ 'N/A' }}</span>
                                                                     @endif
                                                                 </td>
-                                                                @can('doctor_edit')
+                                                               
                                                                 <td>
                                                                     <div class="btn-group mr-1 mb-1">
-                                                                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
-                                                                        <div class="dropdown-menu">
-
-                                                                            
-                                                                                <a class="dropdown-item" href="{{ route('backsite.appointment.edit', $appointment_item->id) }}">
-                                                                                    Edit
-                                                                                </a>
-                                                                                      
+                                                                        @if($appointment_item->status == 1)
+                                                                        <a href="#">tidak ada</a>
+                                                                       @elseif($appointment_item->status == 2)
+                                                                       <a href="{{ route('backsite.appointment.edit', $appointment_item->id) }}" class="btn btn-sm btn-warning ">
+                                                                       Sudah Bayar
+                                                                        </a>
+                                                                       @else
+                                                                       <span>{{ 'N/A' }}</span>
+                                                                       @endif
                                                                 </td>
-                                                                @endcan 
+                                                                
                                                             </tr>
                                                         @empty
                                                             {{-- not found --}}
                                                         @endforelse
                                                     </tbody>
-                                                    <tfoot>
+                                                    {{--  <tfoot>
                                                         <tr>
                                                             <th>Date</th>
                                                             <th>Doctor</th>
@@ -139,7 +138,7 @@
                                                             <th>Time</th>
                                                             <th>Status</th>
                                                         </tr>
-                                                    </tfoot>
+                                                    </tfoot>  --}}
                                                 </table>
                                             </div>
 

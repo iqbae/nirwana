@@ -18,7 +18,7 @@ class CreateAppointmentTable extends Migration
             $table->foreignId('doctor_id')->nullable()->index('fk_appointment_to_doctor');
             $table->foreignId('user_id')->nullable()->index('fk_appointment_to_users');
             $table->foreignId('consultation_id')->nullable()->index('fk_appointment_to_consultation');
-            $table->enum('level', [1,2,3]);
+            $table->enum('level', [1,2]);
             $table->date('date')->nullable();
             $table->time('time')->nullable();
             $table->enum('status', [1,2]);

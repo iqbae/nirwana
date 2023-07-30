@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Operational\Doctor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SpecialistSeeder::class,
             UserSeeder::class,
             DetailUserSeeder::class,
+            DoctorSeeder::class,
             PermissionSeeder::class,
             RoleSeeder::class,
             PermissionRoleSeeder::class,

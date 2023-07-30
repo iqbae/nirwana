@@ -24,7 +24,7 @@
                         <h1>
                             <div class="flex items-center">
                                 <span class="text-white text-xs sm:text-sm font-medium bg-[#2AB49B] rounded-full px-8 py-2">Soon</span>
-                                <span class="text-[#1E2B4F] text-[11px] sm:text-sm bg-[#F2F6FE] rounded-r-full px-8 py-2 relative -z-10 -ml-4">Fitur panggilan darurat telah diperbarui</span>
+                                <span class="text-[#1E2B4F] text-[11px] sm:text-sm bg-[#F2F6FE] rounded-r-full px-8 py-2 relative -z-10 -ml-4">Fitur pembayaran sedang dikembangkan</span>
                             </div>
 
                             <span class="mt-6 block text-4xl font-semibold sm:text-5xl">
@@ -49,7 +49,7 @@
                                     <img src="{{ asset('/assets/frontsite/images/service.svg') }}" alt="service icon"/>
                                 </div>
                                 <div>
-                                    <h5 class="text-[#1E2B4F] text-lg font-medium">Konsultasi Gratis</h5>
+                                    <h5 class="text-[#1E2B4F] text-lg font-medium">Fasilitas Terbaik</h5>
                                     <p class="text-[#AFAEC3]">seperti yang dijanjikan</p>
                                 </div>
                             </div>
@@ -57,9 +57,9 @@
                         <!-- Text -->
 
                         <!-- CTA Button -->
-                        <div class="grid lg:flex flex-wrap mt-20 gap-5">
+                        <div class="grid lg:flex flex-wrap mt-10 gap-5">
                             <a href="{{ route('register') }}" class="text-white text-lg font-medium text-center bg-[#0EFB71] rounded-full px-12 py-3">Daftar</a>
-                            <a href="#" class="text-[#1E2B4F] text-lg font-medium text-center bg-[#F2F6FE] rounded-full px-16 py-3">Story</a>
+                            {{--  <a href="#" class="text-[#1E2B4F] text-lg font-medium text-center bg-[#F2F6FE] rounded-full px-16 py-3">Story</a>  --}}
                         </div>
                         <!-- CTA Button -->
 
@@ -70,15 +70,15 @@
         <!-- End Hero -->
 
         <!-- Popular Categories -->
-        <section class="mt-32 bg-[#F9FBFC]">
+        <section class="mt-10 bg-[#F9FBFC]">
             <div class="mx-auto max-w-7xl px-4 lg:px-14 py-0">
-                <h3 class="text-2xl font-semibold">Kategori Populer</h3>
-                <p class="text-[#A7B0B5] mt-2">Cara cepat untuk mendapatkan pengalaman pertama Anda</p>
+                <h3 class="text-2xl font-semibold">Spesialis Kami</h3>
+                <p class="text-[#A7B0B5] mt-2">Pilihan spesialis yang tersedia untuk anda</p>
 
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-10 lg:gap-12 mt-10">
                     @forelse($specialist as $key => $specialist_item)
                         <!-- Card -->
-                            <a href="#" class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0EFB71]">
+                            <a  class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0EFB71]">
                                 <h5 class="text-[#1E2B4F] text-lg font-semibold">{{ $specialist_item->name ?? '' }}</h5>
                                 {{--  <p class="text-[#AFAEC3] mt-1">143 doctors</p>  --}}
                             </a>
@@ -93,7 +93,7 @@
         <!-- End Popular Categories -->
 
         <!-- Best Doctors -->
-        <section class="mt-4 lg:mt-16">
+        <section class="mt-4 lg:mt-10">
             <div class="mx-auto max-w-7xl px-4 lg:px-14 py-14">
                 <h3 class="text-[#1E2B4F] text-2xl font-semibold">Dokter Kami</h3>
                 <p class="text-[#A7B0B5] mt-2">Membantu hidup Anda menjadi lebih baik</p>

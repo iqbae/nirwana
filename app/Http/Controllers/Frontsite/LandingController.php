@@ -34,7 +34,7 @@ class LandingController extends Controller
     
     public function index()
     {
-        $specialist = Specialist::orderBy('name', 'desc')->limit(5)->get();
+        $specialist = Specialist::orderBy('name', 'asc')->limit(5)->get();
         $doctor = Doctor::orderBy('created_at', 'desc')->limit(8)->get();
 
         return view('pages.frontsite.landing-page.index', compact('doctor', 'specialist'));
@@ -107,4 +107,11 @@ class LandingController extends Controller
     }
 
     // custom function here
+    public function jadwal(){
+
+        $doctor = Doctor::orderBy('name', 'asc')->get();
+        $specialist = Specialist::orderBy('name', 'asc')->get();
+
+        return view('pages.frontsite.landing-page.jadwal', compact('doctor', 'specialist'));
+    }
 }

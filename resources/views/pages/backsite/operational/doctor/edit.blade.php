@@ -127,6 +127,77 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="card-header">
+                                                        <h4 class="card-title" id="horz-layout-basic">Jadwal Praktik</h4>
+                                                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                                        </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="senin">Senin <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="senin" name="senin" class="form-control" placeholder="example john doe or jane doe" value="{{old('senin', isset($specialist) ? $doctor->senin : '')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('senin'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('senin') }}</p>
+                                                                    @endif
+                                                                    
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="selasa">selasa <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="selasa" name="selasa" class="form-control" placeholder="example john doe or jane doe" value="{{old('selasa', isset($specialist) ? $doctor->selasa : '')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('selasa'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('selasa') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="rabu">rabu <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="rabu" name="rabu" class="form-control" placeholder="example john doe or jane doe" value="{{old('rabu', isset($specialist) ? $doctor->rabu : '')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('rabu'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('rabu') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="kamis">kamis <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="kamis" name="kamis" class="form-control" placeholder="example john doe or jane doe" value="{{old('kamis', isset($specialist) ? $doctor->kamis : '')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('kamis'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('kamis') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="jumat">jumat <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="jumat" name="jumat" class="form-control" placeholder="example john doe or jane doe" value="{{old('jumat', isset($specialist) ? $doctor->jumat : '')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('jumat'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('jumat') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 label-control" for="sabtu">sabtu <code style="color:green;">optional</code></label>
+                                                                <div class="col-md-9 mx-auto">
+                                                                    <input type="text" id="sabtu" name="sabtu" class="form-control" placeholder="example john doe or jane doe" value="{{old('sabtu', isset($specialist) ? $doctor->sabtu : '')}}" autocomplete="off" >
+
+                                                                    @if($errors->has('sabtu'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('sabtu') }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
                                                 </div>
 
                                                 <div class="form-actions text-right">

@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Gate;
 use Auth;
 
+//requests
+use App\Http\Requests\Appointment\UpdateAppointmentRequest;
+
 // use model here
 use App\Models\Operational\Appointment;
 use App\Models\Operational\Doctor;
@@ -105,14 +108,22 @@ class ReportAppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($appointment)
+    public function edit(appointment $appointment)
     {
-        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-            $appointment = Appointment::orderBy('created_at', 'desc')->get();
+        $appointment = Appointment::find($appointment['id']);
+        $appointment->status = 1; // set to completed payment
+        $appointment->save();
+
+        alert()->success('Success Message', 'Berhasil mengubah status pemabayaran');
+        return redirect()->route('backsite.appointment.index');;
+        // abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        //     $appointment = Appointment::orderBy('created_at', 'desc')->get();
+        //     $doctor = Doctor::orderBy('name', 'asc')->get();
             
 
-        return view('pages.backsite.operational.appointment.edit', compact('appointment'));
+        // return view('pages.backsite.operational.appointment.edit', compact('appointment', 'doctor'));
     }
     
 
@@ -123,13 +134,13 @@ class ReportAppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $appointment)
+    public function update(UpdateAppointmentRequest $request, appointment $appointment)
     {
         $data = $request->all();
 
         $appointment->update($data);
 
-        alert()->success('Success Message', 'Successfully updated appointment');
+        alert()->success('Success Message', 'Berhasil mengubah janji');
         return redirect()->route('backsite.appointment.index');
     }
 
@@ -142,5 +153,20 @@ class ReportAppointmentController extends Controller
     public function destroy($id)
     {
         return abort(404);
+    }
+
+    // custom function
+
+    public function change(appointment $appointment)
+    {
+
+        $appointment = Appointment::find($appointment['id']);
+        $appointment->status = 1; // set to completed payment
+        $appointment->save();
+
+        alert()->success('Success Message', 'Berhasil mengubah status pemabayaran');
+        return redirect()->route('backsite.appointment.index');
+        
+
     }
 }
