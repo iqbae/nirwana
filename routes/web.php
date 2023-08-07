@@ -33,6 +33,7 @@ use App\Http\Controllers\Backsite\ReportTransactionController;
 |
 */
 Route::get('jadwal', [LandingController::class, 'jadwal'])->name('landing.jadwal');
+Route::get('tentang', [LandingController::class, 'tentang'])->name('landing.tentang');
 Route::resource('/', LandingController::class);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
@@ -44,10 +45,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     // payment page
     Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('payment/appointment/{id}', [PaymentController::class, 'payment'])->name('payment.appointment');
+    Route::get('payment/appointment/{id}/bukti', [PaymentController::class, 'bukti'])->name('payment.bukti');
     Route::resource('payment', PaymentController::class);
-
-
-    
 
     Route::resource('register_success', RegisterController::class);
 });
@@ -79,17 +78,24 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('consultation', ConsultationController::class);
 
     // doctor
-    // Route::get('/doctor/cetak', DoctorController::class, 'doctor.cetak');
+    Route::get('/doctor/cetakjadwal', [DoctorController::class, 'cetakjadwal'])->name('doctor.cetakjadwal');
+    Route::get('/doctor/{id}/cetakdokter', [DoctorController::class, 'cetakdokter'])->name('doctor.cetakdokter');
+    Route::get('/doctor/cetak', [DoctorController::class, 'cetak'])->name('doctor.cetak');
     Route::resource('doctor', DoctorController::class);
             
     // hospital patient
+    Route::get('/hospital_patient/cetak', [HospitalPatientController::class, 'cetak'])->name('hospital_patient.cetak');
     Route::resource('hospital_patient', HospitalPatientController::class);
 
     // report appointment
-    
+    Route::get('/appointment/cetak', [ReportAppointmentController::class, 'cetak'])->name('appointment.cetak');
+    Route::get('appointment/{id}/cetakappointment', [ReportAppointmentController::class, 'cetakappointment'])->name('appointment.cetakappointment');
     Route::resource('appointment', ReportAppointmentController::class);
 
     // report transaction
+    
+    Route::get('transaction/cetak', [ReportTransactionController::class, 'cetak'])->name('transaction.cetak');
+    Route::get('transaction/{id}/cetaktransaction', [ReportTransactionController::class, 'cetaktransaction'])->name('transaction.cetaktransaction');
     Route::resource('transaction', ReportTransactionController::class);
 
 });

@@ -343,7 +343,7 @@ fieldset:disabled a.btn {
   color: #babfc7;
   border-color: #babfc7; }
   .btn-outline-light:hover {
-    color: #2a2e30;
+        color: #2a2e30;
     background-color: #babfc7;
     border-color: #babfc7; }
   .btn-outline-light:focus, .btn-outline-light.focus {

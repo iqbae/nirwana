@@ -54,7 +54,7 @@
                                         @can('appointment_export')
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
-                                                <li><a href="appointment/create" target="_blank" class="btn btn-outline-secondary">Export PDF</a></li>
+                                                <li><a href="{{ route('backsite.appointment.cetak') }}" target="_blank" class="btn btn-outline-secondary">Cetak</a></li>
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                                 <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
@@ -70,10 +70,11 @@
                                                 <table class="table table-striped table-bordered text-inputs-searching default-table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Date</th>
+                                                            <th>recorded</th>
                                                             <th>Doctor</th>
                                                             <th>Patient</th>
-                                                            <th>Consultation</th>
+                                                            <th>Complaint</th>
+                                                            {{--  <th>Consultation</th>  --}}
                                                             <th>Level</th>
                                                             <th>Date</th>
                                                             <th>Time</th>
@@ -89,12 +90,41 @@
                                                                 <td>{{ isset($appointment_item->created_at) ? date("d/m/Y H:i:s",strtotime($appointment_item->created_at)) : '' }}</td>
                                                                 <td>{{ $appointment_item->doctor->name ?? '' }}</td>
                                                                 <td>{{ $appointment_item->user->name ?? '' }}</td>
-                                                                <td>{{ $appointment_item->consultation->name ?? '' }}</td>
+                                                                <td>
+                                                                    {{--  Show only a portion of the complaint content  --}}
+                                                                    <span class="truncated-complaint">
+                                                                        {{ Str::limit($appointment_item->complaint, 50) }}
+                                                                    </span>
+                                                                    {{--  Show full complaint content on button click  --}}
+                                                                    @if(strlen($appointment_item->complaint) > 50)
+                                                                        <button class="btn btn-link show-btn" data-toggle="modal" data-target="#complaintModal_{{ $key }}">
+                                                                            Selengkapnya
+                                                                        </button>
+                                                                        {{--  Modal to show the full complaint content  --}}
+                                                                        <div class="modal fade" id="complaintModal_{{ $key }}" tabindex="-1" role="dialog" aria-labelledby="complaintModalLabel_{{ $key }}" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="complaintModalLabel_{{ $key }}">Complaint</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        {{ $appointment_item->complaint }}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+
+                                                                </td>
+                                                                {{--  <td>{{ $appointment_item->consultation->name ?? '' }}</td>  --}}
                                                                 <td>
                                                                     @if($appointment_item->level == 1)
-                                                                        <span class="badge badge-info">{{ 'Umum' }}</span>
+                                                                        <span class="badge badge-primary">{{ 'Umum' }}</span>
                                                                     @elseif($appointment_item->level == 2)
-                                                                        <span class="badge badge-warning">{{ 'BPJS' }}</span>
+                                                                        <span class="badge badge-success">{{ 'BPJS' }}</span>
                                                                     @endif
                                                                 </td>
                                                                 <td>{{ isset($appointment_item->date) ? date("d/m/Y",strtotime($appointment_item->date)) : '' }}</td>
@@ -103,25 +133,49 @@
                                                                     @if($appointment_item->status == 1)
                                                                         <span class="badge badge-success">{{ 'Sudah Bayar' }}</span>
                                                                     @elseif($appointment_item->status == 2)
-                                                                        <span class="badge badge-warning">{{ 'Belum Bayar' }}</span>
+                                                                        <span class="badge badge-danger">{{ 'Belum Bayar' }}</span>
                                                                     @else
                                                                         <span>{{ 'N/A' }}</span>
                                                                     @endif
                                                                 </td>
-                                                               
+                                                                @can('doctor_edit')
                                                                 <td>
                                                                     <div class="btn-group mr-1 mb-1">
-                                                                        @if($appointment_item->status == 1)
-                                                                        <a href="#">tidak ada</a>
-                                                                       @elseif($appointment_item->status == 2)
-                                                                       <a href="{{ route('backsite.appointment.edit', $appointment_item->id) }}" class="btn btn-sm btn-warning ">
-                                                                       Sudah Bayar
-                                                                        </a>
-                                                                       @else
-                                                                       <span>{{ 'N/A' }}</span>
-                                                                       @endif
+                                                                        <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                                                        <div class="dropdown-menu">
+
+                                                                            
+                                                                                <a href="#mymodal"
+                                                                                    data-remote="{{ route('backsite.appointment.show', $appointment_item->id) }}"
+                                                                                    data-toggle="modal" data-target="#mymodal"
+                                                                                    data-title="Appointment Detail" class="dropdown-item">
+                                                                                    Show
+                                                                                </a>
+                                                              
+
+                                                                            {{--  @can('doctor_edit')
+                                                                                <a class="dropdown-item" href="{{ route('backsite.doctor.edit', $appointment_item->id) }}">
+                                                                                    Edit
+                                                                                </a>
+                                                                            @endcan  --}}
+
+                                                                            {{--  @can('doctor_delete')
+                                                                                <form action="{{ route('backsite.doctor.destroy', $appointment_item->id) }}" method="POST" onsubmit="return confirm('Are you sure want to delete this data ?');">
+                                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                                                    <input type="submit" class="dropdown-item" value="Delete">
+                                                                                </form>
+                                                                            @endcan  --}}
+
+                                                                            @can('doctor_show')
+                                                                                <a class="dropdown-item" href="{{ route('backsite.appointment.cetakappointment', $appointment_item->id) }}" target="_blank" >
+                                                                                    Cetak
+                                                                                </a>
+                                                                            @endcan
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
-                                                                
+                                                                @endcan
                                                             </tr>
                                                         @empty
                                                             {{-- not found --}}
@@ -150,20 +204,98 @@
                     </section>
                 </div>
             @endcan
-
+        </div></div>
+        
         </div>
     </div>
 <!-- END: Content-->
 
 @endsection
 
+
+
+
+
+@push('after-style')
+    <link rel="stylesheet" href="{{ url('https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css') }}">
+
+    <style>
+        .label {
+            cursor: pointer;
+        }
+
+        .img-container img {
+            max-width: 100%;
+        }
+    </style>
+@endpush
+
 @push('after-script')
+    {{-- inputmask --}}
+    <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/inputmask.js') }}"></script>
+    <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/bindings/inputmask.binding.js') }}"></script>
+
+    <script src="{{ url('https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js') }}" type="text/javascript">
+    </script>
+
     <script>
-        $('.default-table').DataTable( {
-            "order": [],
-            "paging": true,
-            "lengthMenu": [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"] ],
-            "pageLength": 10
+        jQuery(document).ready(function($) {
+            $('#mymodal').on('show.bs.modal', function(e) {
+                var button = $(e.relatedTarget);
+                var modal = $(this);
+
+                modal.find('.modal-body').load(button.data("remote"));
+                modal.find('.modal-title').html(button.data("title"));
+            });
+
+            $('.select-all').click(function() {
+                let $select2 = $(this).parent().siblings('.select2-full-bg')
+                $select2.find('option').prop('selected', 'selected')
+                $select2.trigger('change')
+            })
+
+            $('.deselect-all').click(function() {
+                let $select2 = $(this).parent().siblings('.select2-full-bg')
+                $select2.find('option').prop('selected', '')
+                $select2.trigger('change')
+            })
+        });
+
+            $(document).ready(function() {
+            
+                // Handle "Show" button click to display the full complaint content
+                $('.show-btn').on('click', function() {
+                    var targetModalId = $(this).data('target');
+                    $('#' + targetModalId).modal('show');
+                });
+        
+            });
+ 
+
+        $(function() {
+            $(":input").inputmask();
+        });
+
+        // fancybox
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            infinite: false
         });
     </script>
+
+    <div class="modal fade" id="mymodal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button class="btn close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <i class="fa fa-spinner fa spin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 @endpush

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 // use library here
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 // use everything here
@@ -65,19 +67,7 @@ class ReportAppointmentController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $type_user_condition = Auth::user()->detail_user->type_user_id;
-
-        if($type_user_condition == 1){
-            // for admin
-            $appointment = Appointment::orderBy('created_at', 'desc')->get();
-        }else{
-            // other admin for doctor & patient ( task for everyone here )
-            $appointment = Appointment::orderBy('created_at', 'desc')->get();
-        }
-
-        return view('pages.backsite.operational.appointment.create', compact('appointment'));
+        return abort(404);
     }
 
     /**
@@ -108,7 +98,7 @@ class ReportAppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(appointment $appointment)
+    public function edit(Appointment $appointment)
     {
 
         $appointment = Appointment::find($appointment['id']);
@@ -166,7 +156,31 @@ class ReportAppointmentController extends Controller
 
         alert()->success('Success Message', 'Berhasil mengubah status pemabayaran');
         return redirect()->route('backsite.appointment.index');
-        
+    
+    }
+
+    public function cetak (appointment $appointment){
+        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $type_user_condition = Auth::user()->detail_user->type_user_id;
+
+        if($type_user_condition == 1){
+            // for admin
+            $appointment = Appointment::orderBy('created_at', 'desc')->get();
+        }else{
+            // other admin for doctor & patient ( task for everyone here )
+            $appointment = Appointment::orderBy('created_at', 'desc')->get();
+        }
+
+        return view('pages.backsite.operational.appointment.cetak', compact('appointment'));
+    }
+
+    public function cetakappointment ($id){
+
+        $appointment = Appointment::where('id', $id)->first();
+        $transaction = Transaction::orderBy('created_at', 'desc')->get();
+
+        return view('pages.backsite.operational.appointment.cetakappointment', compact('transaction', 'appointment'));
 
     }
 }

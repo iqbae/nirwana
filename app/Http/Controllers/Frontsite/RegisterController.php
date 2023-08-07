@@ -15,7 +15,7 @@ use Auth;
 
 // use model here
 use App\Models\User;
-
+use App\Models\ManagementAccess\DetailUser;
 // thirdparty package
 
 class RegisterController extends Controller

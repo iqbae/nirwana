@@ -52,6 +52,45 @@
                     </div>
                     <span class="text-[#1E2B4F] font-medium"> (12,495) </span>
                 </div>
+
+                
+                <!-- Tabel -->
+                <div class="mt-6">
+                    {{--  <h2 class="text-[#1E2B4F] font-semibold">Jadwal Praktek:</h2>  --}}
+                    <table class="text-[#1E2B4F] table-auto mt-2">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">Hari</th>
+                                <th class="px-4 py-2">Jam Praktek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border px-4 py-2">Senin</td>
+                                <td class="border px-4 py-2">{{ $doctor->senin ?? '' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border px-4 py-2">Selasa</td>
+                                <td class="border px-4 py-2">{{ $doctor->selasa ?? '' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border px-4 py-2">Rabu</td>
+                                <td class="border px-4 py-2">{{ $doctor->rabu ?? '' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border px-4 py-2">Kamis</td>
+                                <td class="border px-4 py-2">{{ $doctor->kamis ?? '' }}</td>
+                            </tr><tr>
+                                <td class="border px-4 py-2">Jumat</td>
+                                <td class="border px-4 py-2">{{ $doctor->jumat ?? '' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border px-4 py-2">Sabtu</td>
+                                <td class="border px-4 py-2">{{ $doctor->sabtu ?? '' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Form Appointment -->
@@ -65,7 +104,7 @@
 
                     @csrf
 
-                    <label class="block">
+                    {{--  <label class="block">
                         <select
                             name="consultation_id"
                             id="consultation_id"
@@ -82,7 +121,21 @@
                             @endforeach
 
                         </select>
+                    </label>  --}}
+
+                    <label class="block">
+                        <textarea
+                            name="complaint"
+                            id="complaint"
+                            class="block w-full rounded-2xl py-4 text-[#1E2B4F] font-medium px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
+                            placeholder="Tuliskan Keluhan Anda disini" required
+                            rows="4" 
+                        ></textarea>
                     </label>
+
+                    <!-- Keterangan -->
+                    <p class="text-[#AFAEC3] text-justify text-sm mt-2">Apabila Anda bingung untuk menentukan dokter untuk Keluhan anda silahkan untuk memilih dokter umum sebagai langkah awal dalam menentukan diagnosa anda</p>
+                    
 
                     <label class="block">
                         <select
@@ -180,6 +233,10 @@
                         </svg>
                         </span>
                     </label>
+                    <!-- Keterangan -->
+                    <p class="text-[#1E2B4F] text-sm mt-2">
+                        Pastikan Anda memilih hari & waktu sesuai dengan jadwal dokter yang tersedia.
+                    </p>
 
                     <input type="hidden" name="doctor_id" value="{{ $doctor->id ?? '' }}">
 

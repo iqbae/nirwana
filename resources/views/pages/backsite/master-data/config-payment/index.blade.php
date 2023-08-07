@@ -77,7 +77,7 @@
                                                         @forelse($config_payment as $key => $config_payment_item)
                                                             <tr data-entry-id="{{ $config_payment_item->id }}">
                                                                 <td>{{ isset($config_payment_item->created_at) ? date("d/m/Y H:i:s",strtotime($config_payment_item->created_at)) : '' }}</td>
-                                                                <td>{{ 'IDR '.number_format($config_payment_item->fee) ?? '' }}</td>
+                                                                <td>{{ 'Rp. '.number_format($config_payment_item->fee) ?? '' }}</td>
                                                                 <td>{{ number_format($config_payment_item->vat).'%' ?? '' }}</td>
                                                                 <td class="text-center">
 

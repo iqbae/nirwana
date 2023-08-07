@@ -41,14 +41,16 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
-            ]), function (User $user) {
 
+            ]), function (User $user) use ($input) {
+
+                
                 // add to detail users and user default role pasien
                 $detail_user = new DetailUser;
                 $detail_user->user_id = $user->id;
                 $detail_user->type_user_id = 3;
-                $detail_user->contact = NULL;
-                $detail_user->address = NULL;
+                $detail_user->contact = $input['contact'];
+                $detail_user->address = $input['address'];
                 $detail_user->photo = NULL;
                 $detail_user->gender = NULL;
                 $detail_user->save();

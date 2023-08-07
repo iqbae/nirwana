@@ -55,19 +55,6 @@ class DoctorController extends Controller
         return view('pages.backsite.operational.doctor.index', compact('doctor', 'specialist'));
     }
 
-    // public function cetak()
-    // {
-    //     abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-    //     // for table grid
-    //     $doctor = Doctor::orderBy('created_at', 'desc')->get();
-
-    //     // for select2 = ascending a to z
-    //     $specialist = Specialist::orderBy('name', 'asc')->get();
-
-    //     return view('pages.backsite.operational.doctor.cetak', compact('doctor', 'specialist'));
-    // }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -75,15 +62,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        // for table grid
-        $doctor = Doctor::orderBy('created_at', 'desc')->get();
-
-        // for select2 = ascending a to z
-        $specialist = Specialist::orderBy('name', 'asc')->get();
-
-        return view('pages.backsite.operational.doctor.create', compact('doctor', 'specialist'));
+        return abort(404);
     }
 
     /**
@@ -99,7 +78,7 @@ class DoctorController extends Controller
 
         // re format before push to table
         $data['fee'] = str_replace(',', '', $data['fee']);
-        $data['fee'] = str_replace('IDR ', '', $data['fee']);
+        $data['fee'] = str_replace('Rp. ', '', $data['fee']);
 
         // upload process here
         $path = public_path('app/public/assets/file-doctor');
@@ -167,7 +146,7 @@ class DoctorController extends Controller
 
         // re format before push to table
         $data['fee'] = str_replace(',', '', $data['fee']);
-        $data['fee'] = str_replace('IDR ', '', $data['fee']);
+        $data['fee'] = str_replace('Rp. ', '', $data['fee']);
 
         // upload process here
         // change format photo
@@ -222,5 +201,50 @@ class DoctorController extends Controller
 
         alert()->success('Success Message', 'Successfully deleted doctor');
         return back();
+    }
+// custom function
+    public function cetakjadwal(Doctor $doctor){
+
+        abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        // for table grid
+        $doctor = Doctor::orderBy('created_at', 'desc')->get();
+
+        // for select2 = ascending a to z
+        $specialist = Specialist::orderBy('name', 'asc')->get();
+
+        return view('pages.backsite.operational.doctor.cetakjadwal', compact('doctor', 'specialist'));
+    
+
+    }
+
+    public function cetakdokter($id){
+
+        abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        // for table grid
+        $doctor = Doctor::where('id', $id)->first();
+
+        // for select2 = ascending a to z
+        $specialist = Specialist::orderBy('name', 'asc')->get();
+
+
+        return view('pages.backsite.operational.doctor.cetakdokter', compact('doctor', 'specialist'));
+    
+
+    }
+
+    public function cetak(){
+
+        abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        // for table grid
+        $doctor = Doctor::orderBy('created_at', 'desc')->get();
+
+        // for select2 = ascending a to z
+        $specialist = Specialist::orderBy('name', 'asc')->get();
+        
+        return view('pages.backsite.operational.doctor.cetak', compact('doctor', 'specialist'));
+
     }
 }

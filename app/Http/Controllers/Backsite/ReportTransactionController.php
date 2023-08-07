@@ -7,10 +7,15 @@ use App\Http\Controllers\Controller;
 // use library here
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
+
+//request
+use App\Http\Requests\Transaction\UpdateTransactionRequest;
 
 // use everything here
 use Gate;
 use Auth;
+use File;
 
 // use model here
 use App\Models\Operational\Transaction;
@@ -65,37 +70,9 @@ class ReportTransactionController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $type_user_condition = Auth::user()->detail_user->type_user_id;
-
-        if($type_user_condition == 1){
-            // for admin
-            $transaction = Transaction::orderBy('created_at', 'desc')->get();
-        }else{
-            // other admin for doctor & patient ( task for everyone here )
-            $transaction = Transaction::orderBy('created_at', 'desc')->get();
-        }
-
-        return view('pages.backsite.operational.transaction.create', compact('transaction'));
+        return abort(404);
     }
 
-    public function print()
-    {
-        abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $type_user_condition = Auth::user()->detail_user->type_user_id;
-
-        if($type_user_condition == 1){
-            // for admin
-            $transaction = Transaction::orderBy('created_at', 'desc')->get();
-        }else{
-            // other admin for doctor & patient ( task for everyone here )
-            $transaction = Transaction::orderBy('created_at', 'desc')->get();
-        }
-
-        return view('pages.backsite.operational.transaction.print', compact('transaction'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -114,9 +91,9 @@ class ReportTransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transaction $transaction)
     {
-        return abort(404);
+        return view('pages.backsite.operational.transaction.show', compact('transaction'));
     }
 
     /**
@@ -125,9 +102,10 @@ class ReportTransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Transaction $transaction)
     {
-        return abort(404);
+        
+        return view('pages.backsite.operational.transaction.edit', compact('transaction'));
     }
 
     /**
@@ -137,9 +115,39 @@ class ReportTransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Transaction $transaction)
     {
-        return abort(404);
+        $data = $request->all();
+        $appointment = Appointment::orderBy('created_at', 'desc')->get();
+
+        // upload process here
+        $path = public_path('app/public/assets/file-bukti');
+        if(!File::isDirectory($path)){
+            $response = Storage::makeDirectory('public/assets/file-bukti');
+        }
+
+        // change file locations
+        if(isset($data['bukti'])){
+            $data['bukti'] = $request->file('bukti')->store(
+                'assets/file-bukti', 'public'
+            );
+        }else{
+            $data['bukti'] = "";
+        }
+        
+
+        // update to database
+        $transaction->update($data);
+
+        // Retrieve and update the related appointment
+    if ($transaction->appointment) {
+        $transaction->appointment->status = 1; // set to completed payment
+        $transaction->appointment->save();
+    }
+    
+        alert()->success('Success Message', 'Successfully updated Transaction');
+        return redirect()->route('backsite.transaction.index');
+
     }
 
     /**
@@ -151,5 +159,30 @@ class ReportTransactionController extends Controller
     public function destroy($id)
     {
         return abort(404);
+    }
+
+    //custom function
+    public function cetak(){
+        abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $type_user_condition = Auth::user()->detail_user->type_user_id;
+
+        if($type_user_condition == 1){
+            // for admin
+            $transaction = Transaction::orderBy('created_at', 'desc')->get();
+        }else{
+            // other admin for doctor & patient ( task for everyone here )
+            $transaction = Transaction::orderBy('created_at', 'desc')->get();
+        }
+
+        return view('pages.backsite.operational.transaction.cetak', compact('transaction'));
+    }
+
+    public function cetaktransaction($id){
+        
+        $transaction = Transaction::where('id', $id)->first();
+        $appointment = Appointment::orderBy('created_at', 'desc')->get();   
+
+        return view('pages.backsite.operational.transaction.cetaktransaction', compact('transaction', 'appointment'));
     }
 }

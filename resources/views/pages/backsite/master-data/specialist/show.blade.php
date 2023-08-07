@@ -5,6 +5,6 @@
     </tr>
     <tr>
         <th>Harga</th>
-        <td>{{ isset($specialist->price) ? 'IDR '.number_format($specialist->price) : 'N/A' }}</td>
+        <td>{{ isset($specialist->price) ? 'Rp. '.number_format($specialist->price) : 'N/A' }}</td>
     </tr>
 </table>

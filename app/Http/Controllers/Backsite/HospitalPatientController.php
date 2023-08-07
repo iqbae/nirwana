@@ -59,14 +59,8 @@ class HospitalPatientController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('hospital_patient_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $hospital_patient = User::whereHas('detail_user', function ($query) {
-                                    return $query->where('type_user_id', 3);
-                                })->orderBy('created_at', 'desc')->get();
+        return abort(404);
         
-
-        return view('pages.backsite.operational.hospital-patient.create', compact('hospital_patient'));
     }
 
     /**
@@ -123,5 +117,16 @@ class HospitalPatientController extends Controller
     public function destroy($id)
     {
         return abort(404);
+    }
+
+    public function cetak(){
+        abort_if(Gate::denies('hospital_patient_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $hospital_patient = User::whereHas('detail_user', function ($query) {
+                                    return $query->where('type_user_id', 3);
+                                })->orderBy('created_at', 'desc')->get();
+        
+
+        return view('pages.backsite.operational.hospital-patient.cetak', compact('hospital_patient'));
     }
 }

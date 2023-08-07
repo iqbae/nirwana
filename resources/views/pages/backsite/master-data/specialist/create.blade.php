@@ -42,7 +42,7 @@
                                                             <tr data-entry-id="{{ $specialist_item->id }}">
                                                                 <td>{{ isset($specialist_item->created_at) ? date("d/m/Y H:i:s",strtotime($specialist_item->created_at)) : '' }}</td>
                                                                 <td>{{ $specialist_item->name ?? '' }}</td>
-                                                                <td>{{ 'IDR '.number_format($specialist_item->price) ?? '' }}</td>
+                                                                <td>{{ 'Rp. '.number_format($specialist_item->price) ?? '' }}</td>
                                                 @empty
                                                     {{-- not found --}}
                                                 @endforelse

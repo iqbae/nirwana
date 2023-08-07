@@ -1,3 +1,4 @@
+
 <table class="table table-bordered">
     <tr>
         <th>Specialist</th>
@@ -9,10 +10,10 @@
     </tr>
     <tr>
         <th>Fee</th>
-        <td>{{ isset($doctor->fee) ? 'IDR ' . number_format($doctor->fee) : 'N/A' }}</td>
+        <td>{{ isset($doctor->fee) ? 'Rp. ' . number_format($doctor->fee) : 'N/A' }}</td>
     </tr>
     <tr>
-        <th>Photo</th>
+        <th style="height: 200px">Photo</th>
         <td>
             <img src="
                 @if ($doctor->photo != '') @if (File::exists('storage/' . $doctor->photo))
@@ -22,7 +23,7 @@
                     @else
                         {{ 'N/A' }}
                 @endif "
-                alt="doctor photo" class="users-avatar-shadow" height="100" width="100">
+                alt="doctor photo" class="users-avatar-shadow" height="200">
         </td>
     </tr>
 </table>

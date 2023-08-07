@@ -4,23 +4,17 @@
 
 @section('content')
 
-
-
     <!-- Content -->
-    
-        
-
     <div class="min-h-screen">
         <div class="max-w-7xl grid lg:grid-cols-12 mx-auto pt-14 lg:pt-20 pb-20 lg:pb-28 lg:divide-x px-4 lg:px-16">
 
             <!-- Detail Payment -->
-
-            <div  class="print-area lg:col-span-7 lg:pl-8 lg:pr-20">
+            <div class="lg:col-span-7 lg:pl-8 lg:pr-20">
                 <!-- Doctor Information -->
                 <div class="flex flex-wrap items-center space-x-5">
                     <div class="flex-shrink-0">
-                        <img src="{{ url(Storage::url($appointment->doctor->photo)) ?? '' }}"
-                            class="w-20 h-20 rounded-full bg-center object-cover object-top" alt="Doctor 1" />
+                        {{--  <img src="{{ url(Storage::url($transaction->appointment->doctor->photo)) ?? '' }}"
+                            class="w-20 h-20 rounded-full bg-center object-cover object-top" alt="Doctor 1" />  --}}
                     </div>
 
                     <div class="flex-1 space-y-1">
@@ -122,10 +116,10 @@
                 <!-- Appoinment Information -->
                 <div class="mt-16">
                     <h5 class="text-[#1E2B4F] text-lg font-semibold">Appointment</h5>
-                    {{--  <div class="flex items-center justify-between mt-5">
+                    <div class="flex items-center justify-between mt-5">
                         <div class="text-[#AFAEC3] font-medium">Kebutuhan konsultasi</div>
                         <div class="text-[#1E2B4F] font-medium">{{ $appointment->consultation->name ?? '' }}</div>
-                    </div>  --}}
+                    </div>
 
                     <div class="flex items-center justify-between mt-5">
                         <div class="text-[#AFAEC3] font-medium">Layanan</div>
@@ -155,9 +149,9 @@
                         <div class="text-[#AFAEC3] font-medium">Status</div>
                         <div class="text-[#1E2B4F] font-medium">
                             @if ($appointment->status == 1)
-                                {{ 'Pembayaran selesai' }}
+                                {{ 'Payment Completed' }}
                             @elseif ($appointment->status == 2)
-                                {{ 'Menunggu Pembayaran' }}
+                                {{ 'Waiting Payment' }}
                             @else
                                 {{ 'N/A' }}
                             @endif
@@ -200,14 +194,11 @@
                     </div>
                 </div>
             </div>
-            
 
             <!-- Choose Payment -->
             <div class="lg:col-span-5 lg:pl-20 lg:pr-7 mt-10 lg:mt-0">
-                <h2 class="text-[#1E2B4F] text-3xl font-semibold leading-normal">
-                    Apply for <br />
-                    New Appointment
-                </h2>
+                <h3 class="text-[#1E2B4F] text-2xl font-semibold leading-normal">Pilih Metode <br />Pembayaran Anda
+                </h3>
 
                 <form action="{{ route('payment.store') }}" method="POST" enctype="multipart/form-data"
                     x-data="{ payment: '' }" class="mt-8">
@@ -215,9 +206,6 @@
                     @csrf
 
                     <!-- List Payment -->
-                    <p class="text-[#AFAEC3] text-sm mt-2">
-                        Pastikan kembali semua data telah benar. Silahkan simpan terlebih dahulu sebagai bukti anda melakukan janji dengan dokter.
-                    </p>
                     {{--  <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-5">
                         <div class="relative">
                             <input type="radio" name="payment" x-model="payment" value="master-card" id="master-card"
@@ -268,26 +256,16 @@
                         <button type="submit" class="bg-[#C0CADA] text-white px-10 py-3 rounded-full text-center"
                         onclick="return confirm('Pastikan melakukan pembayaran kekasir setibanya dirumah sakit')">Cetak</button>
             </div>  --}}
-            {{--  <form action="/" method="get" enctype="multipart/form-data"  --}}
-            
+            {{--  <form action="{{ route('payment.bukti') }}" method="get" enctype="multipart/form-data"  --}}
 
             <div class="mt-10 grid">
-                <button class="bg-[#C0CADA] text-white px-10 py-3 rounded-full text-center" id="printBtn">Simpan</button>
-
-               {{-- <button type="submit" class="bg-[#C0CADA] text-white px-10 py-3 rounded-full text-center"
-                        onclick="return confirm('Pastikan melakukan pembayaran kekasir setibanya dirumah sakit')">Cetak</button>
-                  <a href="{{ route('payment.bukti') }}" class="inline-block mt-10 bg-[#0EFB71] text-white rounded-full px-14 py-3">My Dashboard</a>  --}}
+                {{--  <button type="submit" class="bg-[#dad7c0] text-white px-10 py-3 rounded-full text-center"
+                        onclick="return confirm('Pastikan melakukan pembayaran kekasir setibanya dirumah sakit')">Cetak</button>  --}}
+                <a href="{{ route('payment.bukti') }}" class="inline-block mt-10 bg-[#0EFB71] text-white rounded-full px-14 py-3">My Dashboard</a>
             </div>
         </form>
 
         </div>
     </div>
-    
 
-<script type="text/javascript">
-
-    document.getElementById('printBtn').addEventListener('click', () => { window.print() });
-    // Prints area to which class was assigned only
-  
-  </script>
 @endsection

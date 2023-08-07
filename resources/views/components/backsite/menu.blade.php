@@ -11,7 +11,7 @@
             <li class=" navigation-header"><span data-i18n="Application">Application</span><i class="la la-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Application"></i>
             </li>
 
-            {{--  @can('management_access')  --}}
+            @can('management_access')
                 <li class=" nav-item"><a href="#"><i class="{{ request()->is('backsite/permission') || request()->is('backsite/permission/*') || request()->is('backsite/*/permission') || request()->is('backsite/*/permission/*') || request()->is('backsite/role') || request()->is('backsite/role/*') || request()->is('backsite/*/role') || request()->is('backsite/*/role/*') || request()->is('backsite/user') || request()->is('backsite/user/*') || request()->is('backsite/*/user') || request()->is('backsite/*/user/*') || request()->is('backsite/type_user') || request()->is('backsite/type_user/*') || request()->is('backsite/*/type_user') || request()->is('backsite/*/type_user/*') ? 'bx bx-group bx-flashing' : 'bx bx-group' }}"></i><span class="menu-title" data-i18n="Management Access">Management Access</span></a>
                     <ul class="menu-content">
                         @can('permission_access')
@@ -44,9 +44,9 @@
                         @endcan
                     </ul>
                 </li>
-            {{--  @endcan  --}}
+            @endcan
 
-            {{-- @can('master_data_access') --}}
+            @can('master_data_access')
                 <li class=" nav-item"><a href="#"><i class="{{ request()->is('backsite/specialist') || request()->is('backsite/specialist/*') || request()->is('backsite/*/specialist') || request()->is('backsite/*/specialist/*') || request()->is('backsite/consultation') || request()->is('backsite/consultation/*') || request()->is('backsite/*/consultation') || request()->is('backsite/*/consultation/*') || request()->is('backsite/config_payment') || request()->is('backsite/config_payment/*') || request()->is('backsite/*/config_payment') || request()->is('backsite/*/config_payment/*') ? 'bx bx-customize bx-flashing' : 'bx bx-customize' }}"></i><span class="menu-title" data-i18n="Master Data">Master Data</span></a>
                     <ul class="menu-content">
 
@@ -76,9 +76,9 @@
 
                     </ul>
                 </li>
-            {{-- @endcan --}}
+            @endcan
 
-            {{--  @can('operational_access')   --}}
+            @can('operational_access') 
                 <li class=" nav-item"><a href="#"><i class="{{ request()->is('backsite/doctor') || request()->is('backsite/doctor/*') || request()->is('backsite/*/doctor') || request()->is('backsite/*/doctor/*') || request()->is('backsite/hospital_patient') || request()->is('backsite/hospital_patient/*') || request()->is('backsite/*/hospital_patient') || request()->is('backsite/*/hospital_patient/*') || request()->is('backsite/appointment') || request()->is('backsite/appointment/*') || request()->is('backsite/*/appointment') || request()->is('backsite/*/appointment/*') || request()->is('backsite/transaction') || request()->is('backsite/transaction/*') || request()->is('backsite/*/transaction') || request()->is('backsite/*/transaction/*') ? 'bx bx-hive bx-flashing' : 'bx bx-hive' }}"></i><span class="menu-title" data-i18n="Operational">Operational</span></a>
                     <ul class="menu-content">
 
@@ -120,7 +120,7 @@
 
                     </ul>
                 </li>
-            {{--  @endcan  --}}
+            @endcan
 
 
         </ul>

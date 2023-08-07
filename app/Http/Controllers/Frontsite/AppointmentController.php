@@ -67,7 +67,8 @@ class AppointmentController extends Controller
         $appointment = new Appointment;
         $appointment->doctor_id = $data['doctor_id'];
         $appointment->user_id = Auth::user()->id;
-        $appointment->consultation_id = $data['consultation_id'];
+        $appointment->complaint = $data['complaint'];
+        // $appointment->consultation_id = $data['consultation_id'];
         $appointment->level = $data['level_id'];
         $appointment->date = $data['date'];
         $appointment->time = $data['time'];
@@ -128,8 +129,8 @@ class AppointmentController extends Controller
     public function appointment($id)
     {
         $doctor = Doctor::where('id', $id)->first();
-        $consultation = Consultation::orderBy('name', 'asc')->get();
+        // $consultation = Consultation::orderBy('name', 'asc')->get();        , 'consultation'
 
-        return view('pages.frontsite.appointment.index', compact('doctor', 'consultation'));
+        return view('pages.frontsite.appointment.index', compact('doctor'));
     }
 }

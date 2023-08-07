@@ -66,6 +66,30 @@
 
                             <label class="block">
                                 <input
+                                    for="contact" type="text" id="contact" name="contact"
+                                    class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] border-none  "
+                                    placeholder="Nomor Telpon" value="{{ old('contact') }}" required autofocus
+                                />
+                            </label>
+
+                             <label class="block">
+                                <input
+                                    for="address" type="text" id="address" name="address"
+                                    class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] border-none  "
+                                    placeholder="Alamat" value="{{ old('address') }}" required autofocus
+                                />
+                            </label>
+
+                            {{-- <label class="block">
+                                <input
+                                    for="gender" type="text" id="address" name="address"
+                                    class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] border-none  "
+                                    placeholder="jenis Kelamin" value="{{ old('name') }}" required autofocus
+                                />
+                            </label>  --}}
+
+                            <label class="block">
+                                <input
                                     for="password" type="password" id="password" name="password"
                                     class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0EFB71]"
                                     placeholder="Password" value="{{ old('password') }}" required autofocus

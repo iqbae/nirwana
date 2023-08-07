@@ -20,7 +20,7 @@ class DoctorSeeder extends Seeder
             [
             'specialist_id' => '2',
             'name'          => 'dr. Iskandar Thalib',
-            'fee'           => '250000',
+            'fee'           => '25000',
             'photo'         => NULL,
             'senin'         => '12.00-15.00',
             'selasa'        => '16.00-21.00',

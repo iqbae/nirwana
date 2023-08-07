@@ -22,6 +22,7 @@ class CreateTransactionTable extends Migration
             $table->string('sub_total')->nullable();
             $table->string('vat')->nullable();
             $table->string('total')->nullable();
+            $table->longText('bukti')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

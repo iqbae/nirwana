@@ -105,7 +105,7 @@ class ConfigPaymentController extends Controller
 
         // re format before push to table
         $data['fee'] = str_replace(',', '', $data['fee']);
-        $data['fee'] = str_replace('IDR ', '', $data['fee']);
+        $data['fee'] = str_replace('Rp. ', '', $data['fee']);
         $data['vat'] = str_replace(',', '', $data['vat']);
 
         // update to database

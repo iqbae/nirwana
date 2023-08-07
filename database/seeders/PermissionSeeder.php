@@ -23,6 +23,22 @@ class PermissionSeeder extends Seeder
                 'created_at' => '2022-04-22 00:00:00',
                 'updated_at' => '2022-04-22 00:00:00',
             ],
+            [
+                'title'      => 'management_access',
+                'created_at' => '2022-04-22 00:00:00',
+                'updated_at' => '2022-04-22 00:00:00',
+            ],
+            [
+                'title'      => 'master_data_access',
+                'created_at' => '2022-04-22 00:00:00',
+                'updated_at' => '2022-04-22 00:00:00',
+            ],
+            [
+                'title'      => 'operational_access',
+                'created_at' => '2022-04-22 00:00:00',
+                'updated_at' => '2022-04-22 00:00:00',
+            ],
+
 
             //Management Accsess
 

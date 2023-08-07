@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 {{-- set title --}}
-@section('title', 'hospital_patient')
+@section('title', 'hospital patient')
 
 @section('content')
 
@@ -53,7 +53,7 @@
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
-                                                <li><a href="hospital_patient/create" target="_blank" class="btn btn-outline-secondary">Export PDF</a></li>
+                                                <li><a href="{{ route('backsite.hospital_patient.cetak') }}" target="_blank" class="btn btn-outline-secondary">Cetak</a></li>
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                                 <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
@@ -68,42 +68,39 @@
                                                 <table class="table table-striped table-bordered text-inputs-searching default-table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Terdaftar</th> 
-                                                            <th>Nama Pasien</th>
-                                                            <th>Dokter</th>
-                                                            {{--  <th>Consultation</th>  --}}
-                                                            {{--  <th>Level</th>  --}}
-                                                            {{--  <th>Date</th>  --}}
-                                                            {{--  <th>Time</th>  --}}
-                                                            {{--  <th>Status</th>  --}}
+                                                            <th>recorded</th> 
+                                                            <th>Name Patient</th>
+                                                            <th>Contact</th>
+                                                            <th>Address</th>
+                                                            <th>Email</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @forelse($hospital_patient as $key => $patient_item)
                                                         <tr data-entry-id="{{ $patient_item->id }}">
                                                             <td>{{ isset($patient_item->created_at) ? date("d/m/Y H:i:s",strtotime($patient_item->created_at)) : '' }}</td>
-                                                            {{--  <td>{{ $patient_item->doctor->name ?? '' }}</td>  --}}
                                                             <td>{{ $patient_item->name ?? '' }}</td>
-                                                            {{--  <td>{{ $patient_item->consultation->name ?? '' }}</td>  --}}
-                                                            <td>{{ $patient_item->doctor->name ?? '' }}</td>
+                                                            <td>{{ $patient_item->detail_user->contact ?? '' }}</td>
+                                                            <td>{{ $patient_item->detail_user->address ?? '' }}</td>
+                                                            <td>{{ $patient_item->email ?? '' }}</td>
                                                                 
                                                             </tr>
                                                         @empty
                                                             {{-- not found --}}
                                                         @endforelse
                                                     </tbody>
-                                                    <tfoot>
+                                                    {{--  <tfoot>
                                                         <tr>
                                                             <th>Date Registered</th> 
-                                                            {{--  <th>Doctor</th>  --}}
+                                                            <th>Doctor</th>
                                                             <th>Patient Name</th>
-                                                            {{--  <th>Consultation</th>  --}}
-                                                            {{--  <th>Level</th>
+                                                            <th>Consultation</th>
+                                                            <th>Level</th>
                                                             <th>Date</th>
                                                             <th>Time</th>
-                                                            <th>Status</th>  --}}
+                                                            <th>Status</th>
                                                         </tr>
-                                                    </tfoot>
+                                                    </tfoot>  --}}
                                                 </table>
                                             </div>
 

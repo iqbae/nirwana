@@ -21,6 +21,10 @@
                         class="text-[#1E2B4F] relative {{ request()->is('jadwal') ? "after:absolute after:content-[''] after:border-b-2 after:border-[#0EFB71] after:w-8/12 after:-translate-x-1/2 after:bottom-3 after:left-1/2 font-semibold inline-flex items-center px-1 text-lg" : 'hover:text-gray-500 inline-flex items-center px-1 pt-1 text-lg font-medium' }} ">
                         Jadwal dokter
                     </a>
+                    <a href="{{ route('landing.tentang') }}"
+                        class="text-[#1E2B4F] relative {{ request()->is('tentang') ? "after:absolute after:content-[''] after:border-b-2 after:border-[#0EFB71] after:w-8/12 after:-translate-x-1/2 after:bottom-3 after:left-1/2 font-semibold inline-flex items-center px-1 text-lg" : 'hover:text-gray-500 inline-flex items-center px-1 pt-1 text-lg font-medium' }} ">
+                        Tentang Kami
+                    </a>
                     {{--  <a
                     href="#"
                     class="text-[#1E2B4F] relative hover:text-gray-500 inline-flex items-center px-1 pt-1 text-lg font-medium"

@@ -20,10 +20,10 @@ class DetailUserSeeder extends Seeder
             [
                 'user_id'        => 1,
                 'type_user_id'   => 1,
-                'contact'        => NULL,
-                'address'        => NULL,
+                'contact'        => '085173491404',
+                'address'        => 'Martapura',
                 'photo'          => NULL,
-                'gender'         => NULL,
+                'gender'         => 1,
                 'created_at'     => '2022-04-22 00:00:00',
                 'updated_at'     => '2022-04-22 00:00:00',
             ],

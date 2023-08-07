@@ -84,7 +84,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-md-3 label-control" for="price">Price <code style="color:red;">diperlukan</code></label>
                                                         <div class="col-md-9 mx-auto">
-                                                            <input type="text" id="price" name="price" class="form-control" placeholder="example price 10000" value="{{ old('price', isset($specialist) ? $specialist->price : '') }}" autocomplete="off" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'IDR ', 'placeholder': '0'" required>
+                                                            <input type="text" id="price" name="price" class="form-control" placeholder="example price 10000" value="{{ old('price', isset($specialist) ? $specialist->price : '') }}" autocomplete="off" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'Rp. ', 'placeholder': '0'" required>
 
                                                             @if($errors->has('price'))
                                                                 <p style="font-style: bold; color: red;">{{ $errors->first('price') }}</p>

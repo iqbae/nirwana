@@ -114,4 +114,8 @@ class LandingController extends Controller
 
         return view('pages.frontsite.landing-page.jadwal', compact('doctor', 'specialist'));
     }
+
+    public function tentang(){
+        return view('pages.frontsite.landing-page.tentang');
+    }
 }

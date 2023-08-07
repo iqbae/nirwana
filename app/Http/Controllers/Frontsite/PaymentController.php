@@ -95,7 +95,7 @@ class PaymentController extends Controller
 
         // update status appointment
         $appointment = Appointment::find($appointment->id);
-        $appointment->status = 1; // set to completed payment
+        $appointment->status = 2; // set to non completed payment
         $appointment->save();
 
         return redirect()->route('payment.success');
@@ -171,5 +171,11 @@ class PaymentController extends Controller
     public function success()
     {
         return view('pages.frontsite.success.payment-success');
+    }
+
+    public function bukti($id){
+
+        
+        return view('pages.frontsite.payment.bukti');
     }
 }

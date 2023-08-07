@@ -105,7 +105,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-md-3 label-control" for="fee">Fee <code style="color:red;">required</code></label>
                                                         <div class="col-md-9 mx-auto">
-                                                            <input type="text" id="fee" name="fee" class="form-control" placeholder="example fee 10000" value="{{old('fee')}}" autocomplete="off" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'IDR ', 'placeholder': '0'" required>
+                                                            <input type="text" id="fee" name="fee" class="form-control" placeholder="example fee 10000" value="{{old('fee')}}" autocomplete="off" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'Rp. ', 'placeholder': '0'" required>
 
                                                             @if($errors->has('fee'))
                                                                 <p style="font-style: bold; color: red;">{{ $errors->first('fee') }}</p>
@@ -235,7 +235,7 @@
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
-                                                <li><a href="doctor/create" target="_blank" class="btn btn-outline-secondary">Export PDF</a></li>
+                                                <li><a href="{{ route('backsite.doctor.cetak') }}" target="_blank" class="btn btn-outline-secondary">Cetak</a></li>
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                                 <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
@@ -250,7 +250,7 @@
                                                 <table class="table table-striped table-bordered text-inputs-searching default-table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Date</th>
+                                                            <th>recorded</th>
                                                             <th>Specialist</th>
                                                             <th>Name</th>
                                                             <th>Fee</th>
@@ -264,7 +264,7 @@
                                                                 <td>{{ isset($doctor_item->created_at) ? date("d/m/Y H:i:s",strtotime($doctor_item->created_at)) : '' }}</td>
                                                                 <td>{{ $doctor_item->specialist->name ?? '' }}</td>
                                                                 <td>{{ $doctor_item->name ?? '' }}</td>
-                                                                <td>{{ 'IDR '.number_format($doctor_item->fee) ?? '' }}</td>
+                                                                <td>{{ 'Rp. '.number_format($doctor_item->fee) ?? '' }}</td>
                                                                 <td><a data-fancybox="gallery" data-src="{{ request()->getSchemeAndHttpHost().'/storage'.'/'.$doctor_item->photo }}" class="blue accent-4">Show</a></td>
                                                                 <td class="text-center">
 
@@ -297,6 +297,11 @@
                                                                                 </form>
                                                                             @endcan
 
+                                                                            @can('doctor_show')
+                                                                                <a class="dropdown-item" href="{{ route('backsite.doctor.cetakdokter', $doctor_item->id) }}" target="_blank" >
+                                                                                    Cetak
+                                                                                </a>
+                                                                            @endcan
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -337,13 +342,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header  text-warning bg-warning bg-lighten-3">
-                                        <h4 class="card-title">Jadwal Praktik Dokter</h4>
+                                    <div class="card-header  text-white bg-warning bg-lighten-1">
+                                        <h4 class="card-title text-white">Jadwal Praktik Dokter</h4>
 
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
-                                                <li><a href="doctor/create" target="_blank" class="btn btn-outline-warning">Export PDF</a></li>
+                                                <li><a href="{{ route('backsite.doctor.cetakjadwal') }}" target="_blank" class="btn btn-outline-light">Cetak</a></li>
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                                 <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
@@ -460,6 +465,7 @@
             "paging": true,
             "lengthMenu": [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"] ],
             "pageLength": 10
+            
         });
 
         $(function() {

@@ -99,7 +99,7 @@
                                                             <input type="text" id="price" name="price"
                                                                 class="form-control" placeholder="example price 10000"
                                                                 value="{{ old('price') }}" autocomplete="off"
-                                                                data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'IDR ', 'placeholder': '0'"
+                                                                data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'Rp. ', 'placeholder': '0'"
                                                                 required>
 
                                                             @if ($errors->has('price'))
@@ -171,7 +171,7 @@
                                                                 <td>{{ isset($specialist_item->created_at) ? date('d/m/Y H:i:s', strtotime($specialist_item->created_at)) : '' }}
                                                                 </td>
                                                                 <td>{{ $specialist_item->name ?? '' }}</td>
-                                                                <td>{{ 'IDR ' . number_format($specialist_item->price) ?? '' }}
+                                                                <td>{{ 'Rp. ' . number_format($specialist_item->price) ?? '' }}
                                                                 </td>
                                                                 <td class="text-center">
 

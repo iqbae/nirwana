@@ -22,6 +22,7 @@ class CreateAppointmentTable extends Migration
             $table->date('date')->nullable();
             $table->time('time')->nullable();
             $table->enum('status', [1,2]);
+            $table->longText('complaint')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

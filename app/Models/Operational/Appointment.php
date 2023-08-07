@@ -30,6 +30,7 @@ class Appointment extends Model
         'date',
         'time',
         'status',
+        'complaint',
         'created_at',
         'updated_at',
         'deleted_at',

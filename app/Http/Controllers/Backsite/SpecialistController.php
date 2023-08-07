@@ -75,7 +75,7 @@ class SpecialistController extends Controller
 
         // re format before push to table
         $data['price'] = str_replace(',', '', $data['price']);
-        $data['price'] = str_replace('IDR ', '', $data['price']);
+        $data['price'] = str_replace('Rp. ', '', $data['price']);
 
         // store to database
         $specialist = Specialist::create($data);
@@ -124,7 +124,7 @@ class SpecialistController extends Controller
 
 
         $data['price'] = str_replace(',', '', $data['price']);
-        $data['price'] = str_replace('IDR ', '', $data['price']);
+        $data['price'] = str_replace('Rp. ', '', $data['price']);
 
         // update to database
         $specialist->update($data);
