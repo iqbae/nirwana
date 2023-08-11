@@ -43,18 +43,29 @@ class ReportAppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $type_user_condition = Auth::user()->detail_user->type_user_id;
 
-        if($type_user_condition == 1){
-            // for admin
+         // Filter by date range
+    $start_date = $request->input('start_date');
+    $end_date = $request->input('end_date');
+
+    if ($start_date && $end_date) {
+        $appointment = Appointment::whereBetween('date', [$start_date, $end_date]);
+    }
+        // filter bpjs&umum
+        $type = $request->input('type'); // Get the "type" parameter from the request
+
+        if ($type && in_array($type, ['UMUM', 'BPJS'])) {
+            // Filter the data based on the "type" parameter
+            $appointment = Appointment::where('level', ($type === 'UMUM' ? 1 : 2))->orderBy('created_at', 'desc')->get();
+        } else {
+            // Show all appointments if "type" is not specified or invalid
             $appointment = Appointment::orderBy('created_at', 'desc')->get();
-        }else{
-            // other admin for doctor & patient ( task for everyone here )
-            $appointment = Appointment::orderBy('created_at', 'desc')->get();
+            
         }
 
         return view('pages.backsite.operational.appointment.index', compact('appointment'));
@@ -89,7 +100,9 @@ class ReportAppointmentController extends Controller
      */
     public function show($id)
     {
-        return abort(404);
+
+        $appointment = Appointment::findOrFail($id);
+        return view('pages.backsite.operational.appointment.show', compact('appointment'));
     }
 
     /**
@@ -147,18 +160,6 @@ class ReportAppointmentController extends Controller
 
     // custom function
 
-    public function change(appointment $appointment)
-    {
-
-        $appointment = Appointment::find($appointment['id']);
-        $appointment->status = 1; // set to completed payment
-        $appointment->save();
-
-        alert()->success('Success Message', 'Berhasil mengubah status pemabayaran');
-        return redirect()->route('backsite.appointment.index');
-    
-    }
-
     public function cetak (appointment $appointment){
         abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -182,5 +183,23 @@ class ReportAppointmentController extends Controller
 
         return view('pages.backsite.operational.appointment.cetakappointment', compact('transaction', 'appointment'));
 
+    }
+
+    public function cetakbpjs (){
+        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    // Filter the data to get BPJS appointments only (level 2)
+    $appointment = Appointment::where('level', 2)->orderBy('created_at', 'desc')->get();
+
+    return view('pages.backsite.operational.appointment.cetakbpjs', compact('appointment'));
+    }
+
+    public function cetakumum (){
+        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    // Filter the data to get BPJS appointments only (level 2)
+    $appointment = Appointment::where('level', 1)->orderBy('created_at', 'desc')->get();
+
+    return view('pages.backsite.operational.appointment.cetakumum', compact('appointment'));
     }
 }

@@ -46,22 +46,54 @@ class ReportTransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+
+    // public function index()
+    // {
+    //     abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    //     $type_user_condition = Auth::user()->detail_user->type_user_id;
+
+    //     if($type_user_condition == 1){
+    //         // for admin
+    //         $transaction = Transaction::orderBy('created_at', 'desc')->get();
+    //     }else{
+    //         // other admin for doctor & patient ( task for everyone here )
+    //         $transaction = Transaction::orderBy('created_at', 'desc')->get();
+    //     }
+
+    //     return view('pages.backsite.operational.transaction.index', compact('transaction'));
+    // }
+
+
+
+    public function index(Request $request)
     {
         abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $type_user_condition = Auth::user()->detail_user->type_user_id;
+        $status = $request->input('status'); // Get the "status" parameter from the request
 
-        if($type_user_condition == 1){
+        if ($type_user_condition == 1) {
             // for admin
-            $transaction = Transaction::orderBy('created_at', 'desc')->get();
-        }else{
+            if ($status && in_array($status, ['Sudah Bayar', 'Belum Bayar'])) {
+                // Filter the data based on the "status" parameter
+                $transaction = Transaction::whereHas('appointment', function ($query) use ($status) {
+                    $query->where('status', $status === 'Sudah Bayar' ? 1 : 2);
+                })->orderBy('created_at', 'desc')->get();
+            } else {
+                // Show all transactions if "status" is not specified or invalid
+                $transaction = Transaction::orderBy('created_at', 'desc')->get();
+            }
+        } else {
             // other admin for doctor & patient ( task for everyone here )
             $transaction = Transaction::orderBy('created_at', 'desc')->get();
         }
 
         return view('pages.backsite.operational.transaction.index', compact('transaction'));
     }
+
 
     /**
      * Show the form for creating a new resource.

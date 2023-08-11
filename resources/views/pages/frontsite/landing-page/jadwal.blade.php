@@ -16,13 +16,13 @@
                     <a href="{{ route('appointment.doctor', $doctor_item->id) }}" class="group ">
                         <div class="col-span-1 md:col-span-1 flex flex-col items-center mb-8">
                             <img src="{{ url(Storage::url($doctor_item->photo)) }}" alt="Foto Dokter" class="inline-block bg-center w-32 h-32 object-cover rounded-full object-top mb-4">
-                            <h1 class="text-xl font-semibold">{{ $doctor_item->name ?? '' }}</h1>
+                            <h1 class="text-xl text-[#1E2B4F] font-semibold">{{ $doctor_item->name ?? '' }}</h1>
                             <p class="text-gray-600">{{ $doctor_item->specialist->name ?? '' }}</p>
                             <button class="bg-[#0EFB71] hover:bg-green-400 text-white px-4 py-2 font-medium rounded-full mt-4">Book Now</button>  
                         </div>
                     </a>
                         <div class="col-span-1 md:col-span-3 overflow-x-auto">
-                            <table class="w-full  rounded-xl mt-20  bg-[#0EFB71]">
+                            <table class="w-full text-white rounded-xl mt-20  bg-[#0EFB71]">
                                 <thead>
                                     <tr class="text-center">
                                         <th class="px-4 py-6"></th>

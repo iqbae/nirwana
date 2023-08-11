@@ -54,7 +54,6 @@
                                         @can('appointment_export')
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
-                                                <li><a href="{{ route('backsite.appointment.cetak') }}" target="_blank" class="btn btn-outline-secondary">Cetak</a></li>
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                                 <!-- <li><a data-action="close"><i class="ft-x"></i></a></li> -->
@@ -65,7 +64,24 @@
 
                                     <div class="card-content collapse show">
                                         <div class="card-body card-dashboard">
+                                            @can('doctor_edit')
+                                            
+                                            <div class="mb-2">
+                                                <a href="{{ route('backsite.appointment.index') }}" class="btn btn-secondary btn-sm">Show All</a>
+                                                <a href="{{ route('backsite.appointment.index', ['type' => 'UMUM']) }}" class="btn btn-primary btn-sm">Show UMUM</a>
+                                                <a href="{{ route('backsite.appointment.index', ['type' => 'BPJS']) }}" class="btn btn-success btn-sm">Show BPJS</a>
+                                                {{--  <input type="text" name="start_date" id="start_date" style="width: 10%" class="form-control form-control-sm flatpickr" placeholder="start date">
+                                                <input type="text" name="end_date" id="end_date" style="width: 10%" class="form-control form-control-sm flatpickr" placeholder="end date">  --}}
+                                                
+                                        
 
+                                                <div class="btn" style="width: 46%"></div>
+                                                <a href="{{ route('backsite.appointment.cetak') }}" target="_blank" class="btn btn-outline-secondary btn-sm">Cetak All</a>
+                                                <a href="{{ route('backsite.appointment.cetakumum') }}" target="_blank" class="btn btn-outline-primary btn-sm">Cetak UMUM</a>
+                                                <a href="{{ route('backsite.appointment.cetakbpjs') }}" target="_blank" class="btn btn-outline-success btn-sm">Cetak BPJS</a>
+                                            
+                                            </div>
+                                            @endcan
                                             <div class="table-responsive">
                                                 <table class="table table-striped table-bordered text-inputs-searching default-table">
                                                     <thead>
@@ -91,32 +107,33 @@
                                                                 <td>{{ $appointment_item->doctor->name ?? '' }}</td>
                                                                 <td>{{ $appointment_item->user->name ?? '' }}</td>
                                                                 <td>
-                                                                    {{--  Show only a portion of the complaint content  --}}
-                                                                    <span class="truncated-complaint">
-                                                                        {{ Str::limit($appointment_item->complaint, 50) }}
-                                                                    </span>
-                                                                    {{--  Show full complaint content on button click  --}}
-                                                                    @if(strlen($appointment_item->complaint) > 50)
-                                                                        <button class="btn btn-link show-btn" data-toggle="modal" data-target="#complaintModal_{{ $key }}">
-                                                                            Selengkapnya
-                                                                        </button>
-                                                                        {{--  Modal to show the full complaint content  --}}
-                                                                        <div class="modal fade" id="complaintModal_{{ $key }}" tabindex="-1" role="dialog" aria-labelledby="complaintModalLabel_{{ $key }}" aria-hidden="true">
-                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <h5 class="modal-title" id="complaintModalLabel_{{ $key }}">Complaint</h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                            <span aria-hidden="true">&times;</span>
-                                                                                        </button>
+                                                                    
+                                                                                <span class="truncated-complaint">
+                                                                                    {{ Str::limit($appointment_item->complaint, 50) }}
+                                                                                </span>
+                                                                                
+                                                                                @if(strlen($appointment_item->complaint) > 50)
+                                                                                    <button class="btn btn-link show-btn" data-toggle="modal" data-target="#complaintModal_{{ $key }}">
+                                                                                        Selengkapnya
+                                                                                    </button>
+                                                                                    
+
+                                                                                    <div class="modal fade" id="complaintModal_{{ $key }}" tabindex="-1" role="dialog" aria-labelledby="complaintModalLabel_{{ $key }}" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="complaintModalLabel_{{ $key }}">Complaint</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    {{ $appointment_item->complaint }}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="modal-body">
-                                                                                        {{ $appointment_item->complaint }}
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endif
+                                                                                @endif
 
                                                                 </td>
                                                                 {{--  <td>{{ $appointment_item->consultation->name ?? '' }}</td>  --}}
@@ -127,7 +144,7 @@
                                                                         <span class="badge badge-success">{{ 'BPJS' }}</span>
                                                                     @endif
                                                                 </td>
-                                                                <td>{{ isset($appointment_item->date) ? date("d/m/Y",strtotime($appointment_item->date)) : '' }}</td>
+                                                                <td>{{ isset($appointment_item->date) ? date("Y-m-d",strtotime($appointment_item->date)) : '' }}</td>
                                                                 <td>{{ isset($appointment_item->time) ? date("H:i:s",strtotime($appointment_item->time)) : '' }}</td>
                                                                 <td>
                                                                     @if($appointment_item->status == 1)
@@ -144,21 +161,13 @@
                                                                         <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                                                         <div class="dropdown-menu">
 
-                                                                            
-                                                                                <a href="#mymodal"
-                                                                                    data-remote="{{ route('backsite.appointment.show', $appointment_item->id) }}"
-                                                                                    data-toggle="modal" data-target="#mymodal"
-                                                                                    data-title="Appointment Detail" class="dropdown-item">
-                                                                                    Show
-                                                                                </a>
+                                                                                {{--  <a href="#mymodal_{{ $key }}" 
+                                                                                data-remote="{{ route('backsite.appointment.show', $appointment_item->id) }}"
+                                                                                data-toggle="modal" data-target="#mymodal_{{ $key }}" 
+                                                                                data-title="Appointment Detail" class="dropdown-item">
+                                                                                    Detail
+                                                                                </a>  --}}
                                                               
-
-                                                                            {{--  @can('doctor_edit')
-                                                                                <a class="dropdown-item" href="{{ route('backsite.doctor.edit', $appointment_item->id) }}">
-                                                                                    Edit
-                                                                                </a>
-                                                                            @endcan  --}}
-
                                                                             {{--  @can('doctor_delete')
                                                                                 <form action="{{ route('backsite.doctor.destroy', $appointment_item->id) }}" method="POST" onsubmit="return confirm('Are you sure want to delete this data ?');">
                                                                                     <input type="hidden" name="_method" value="DELETE">
@@ -174,12 +183,15 @@
                                                                             @endcan
                                                                         </div>
                                                                     </div>
+
+                                                                    
                                                                 </td>
                                                                 @endcan
                                                             </tr>
                                                         @empty
                                                             {{-- not found --}}
                                                         @endforelse
+                                                        
                                                     </tbody>
                                                     {{--  <tfoot>
                                                         <tr>
@@ -218,6 +230,7 @@
 
 @push('after-style')
     <link rel="stylesheet" href="{{ url('https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css') }}">
+    <link rel="stylesheet" href="{{ url('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css') }}"/>
 
     <style>
         .label {
@@ -235,11 +248,13 @@
     <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/jquery.inputmask.js') }}"></script>
     <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/inputmask.js') }}"></script>
     <script src="{{ asset('/assets/backsite/third-party/inputmask/dist/bindings/inputmask.binding.js') }}"></script>
+    <script src="{{ url('https://cdn.jsdelivr.net/npm/flatpickr') }}"></script>
 
     <script src="{{ url('https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js') }}" type="text/javascript">
     </script>
 
     <script>
+
         jQuery(document).ready(function($) {
             $('#mymodal').on('show.bs.modal', function(e) {
                 var button = $(e.relatedTarget);
@@ -281,9 +296,22 @@
         Fancybox.bind('[data-fancybox="gallery"]', {
             infinite: false
         });
+
+        //flatpickr
+//flatpickr
+document.addEventListener("DOMContentLoaded", function () {
+    flatpickr(".flatpickr", {
+        dateFormat: "Y-m-d", // Set the desired date format
+        minDate: "2023-01-01",   // Minimum date is today
+        maxDate: "2099-12-31", // Maximum date (adjust as needed)
+        // You can include more options here
+    });
+});
+
     </script>
 
-    <div class="modal fade" id="mymodal" tabindex="-1" role="dialog">
+
+    {{--  <div class="modal fade" id="mymodal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -297,5 +325,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>  --}}
+
+    
 @endpush

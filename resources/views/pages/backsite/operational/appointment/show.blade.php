@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class=" fs-5 table table-striped text-inputs-searching default-table">
+    <table class="fs-5 table table-striped text-inputs-searching default-table">
         <thead>
             {{--  <tr>
                 <th>Recorded</th>
