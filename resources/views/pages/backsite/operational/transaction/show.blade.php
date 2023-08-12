@@ -32,7 +32,7 @@
         <td>Rp. {{ old('fee_doctor', isset($transaction) ? number_format($transaction->total) : '') }}</td>
     </tr>
     <tr>
-        <th style="height: 200px">Bukti Bayar</th>
+        <th style="height: 200px">Invoice</th>
         <td>
             <img src="
                 @if ($transaction->bukti != '') @if (File::exists('storage/' . $transaction->bukti))
@@ -42,7 +42,7 @@
                     @else
                         {{ 'N/A' }}
                 @endif "
-                alt="doctor photo" class="users-avatar-shadow" height="200">
+                alt="Invoice" class="users-avatar-shadow" height="200">
         </td>
     </tr>
 </table>

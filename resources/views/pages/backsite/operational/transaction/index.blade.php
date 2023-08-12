@@ -64,16 +64,20 @@
                                     <div class="card-content collapse show">
                                         <div class="card-body card-dashboard">
                                             @can('doctor_edit')
-                                            <div class="mb-2">
-                                                
-                                                <a href="{{ route('backsite.transaction.index') }}" class="btn btn-secondary">Show All</a>
-                                                <a href="{{ route('backsite.transaction.index', ['status' => 'Sudah Bayar']) }}" class="btn btn-success">Show Sudah Bayar</a>
-                                                <a href="{{ route('backsite.transaction.index', ['status' => 'Belum Bayar']) }}" class="btn btn-warning">Show Belum Bayar</a>
-                                                <div class="btn" style="width: 50%"></div>
-                                                <a href="{{ route('backsite.transaction.cetak') }}" target="_blank"class="btn btn-outline-secondary">Cetak All</a>
-                                            </div>
+                                                <div class="mb-2">
+
+                                                    <a href="{{ route('backsite.transaction.index') }}"
+                                                        class="btn btn-secondary">Show All</a>
+                                                    <a href="{{ route('backsite.transaction.index', ['status' => 'Sudah Bayar']) }}"
+                                                        class="btn btn-success">Show Sudah Bayar</a>
+                                                    <a href="{{ route('backsite.transaction.index', ['status' => 'Belum Bayar']) }}"
+                                                        class="btn btn-warning">Show Belum Bayar</a>
+                                                    <div class="btn" style="width: 50%"></div>
+                                                    <a href="{{ route('backsite.transaction.cetak') }}"
+                                                        target="_blank"class="btn btn-outline-secondary">Cetak All</a>
+                                                </div>
                                             @endcan
-                                            
+
                                             <div class="table-responsive">
                                                 <table
                                                     class="table table-striped table-bordered text-inputs-searching default-table">
@@ -89,7 +93,7 @@
                                                             <th>Vat</th>
                                                             <th>Total</th>
                                                             <th>Status Bayar</th>
-                                                            <th>Bukti Bayar</th>
+                                                            <th>Invoice</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -134,33 +138,29 @@
                                                                             data-toggle="dropdown" aria-haspopup="true"
                                                                             aria-expanded="false">Action</button>
                                                                         <div class="dropdown-menu">
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('backsite.transaction.cetaktransaction', $transaction_item->id) }}"
+                                                                                target="_blank">
+                                                                                Cetak Invoice
+                                                                            </a>
 
-
-                                                                            
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('backsite.transaction.edit', $transaction_item->id) }}">
-                                                                            Upload Bukti Bayar
-                                                                        </a>
-                                                                        
-                                                                        <a href="#mymodal"
-                                                                            data-remote="{{ route('backsite.transaction.show', $transaction_item->id) }}"
-                                                                            data-toggle="modal" data-target="#mymodal"
-                                                                            data-title="Detail" class="dropdown-item">
-                                                                            Show Detail
-                                                                        </a>
+                                                                            <a href="#mymodal"
+                                                                                data-remote="{{ route('backsite.transaction.show', $transaction_item->id) }}"
+                                                                                data-toggle="modal" data-target="#mymodal"
+                                                                                data-title="Detail" class="dropdown-item">
+                                                                                Show Detail
+                                                                            </a>
                                                                             {{--  <form action="{{ route('backsite.doctor.destroy', $doctor_item->id) }}" method="POST" onsubmit="return confirm('Are you sure want to delete this data ?');">
                                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                                                     <input type="submit" class="dropdown-item" value="Delete">
                                                                                 </form>  --}}
-
-
-
                                                                             <a class="dropdown-item"
-                                                                                href="{{ route('backsite.transaction.cetaktransaction', $transaction_item->id) }}"
-                                                                                target="_blank">
-                                                                                Cetak
+                                                                                href="{{ route('backsite.transaction.edit', $transaction_item->id) }}">
+                                                                                Upload Invoice
                                                                             </a>
+
+
 
                                                                         </div>
                                                                     </div>
@@ -186,7 +186,7 @@
             @endcan
         </div>
     </div>
- 
+
     <!-- END: Content-->
 
 @endsection

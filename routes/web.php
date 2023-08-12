@@ -89,10 +89,10 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
 
     // report appointment
     Route::get('/appointment/cetak', [ReportAppointmentController::class, 'cetak'])->name('appointment.cetak');
-    Route::get('/appointment/cetakbpjs', [ReportAppointmentController::class, 'cetakbpjs'])->name('appointment.cetakbpjs');
-    Route::get('/appointment/cetakumum', [ReportAppointmentController::class, 'cetakumum'])->name('appointment.cetakumum');
-
-
+    Route::get('/appointment/cetakBpjs', [ReportAppointmentController::class, 'cetakBpjs'])->name('appointment.cetakBpjs');
+    Route::get('/appointment/cetakUmum', [ReportAppointmentController::class, 'cetakUmum'])->name('appointment.cetakUmum');
+    Route::get('/appointment/cetakfilterdokter', [ReportAppointmentController::class, 'cetakFilterDokter'])->name('appointment.cetakfilterdokter');
+    Route::get('/appointment/reportfilter', [ReportAppointmentController::class, 'reportfilter'])->name('appointment.reportfilter');
     Route::get('appointment/{id}/cetakappointment', [ReportAppointmentController::class, 'cetakappointment'])->name('appointment.cetakappointment');
     Route::resource('appointment', ReportAppointmentController::class);
 
