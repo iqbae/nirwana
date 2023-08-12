@@ -19,7 +19,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a
                                         href="{{ route('backsite.transaction.index') }}">Transaction</a></li>
-                                <li class="breadcrumb-item active">Upload Bukti Bayar</li>
+                                <li class="breadcrumb-item active">Upload Invoice</li>
                             </ol>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                             <div class="card">
                                 <div class="card-header bg-success text-white">
                                     <a data-action="collapse">
-                                        <h4 class="card-title text-white">Upload Bukti Bayar</h4>
+                                        <h4 class="card-title text-white">Upload Invoice</h4>
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
@@ -118,7 +118,7 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="bukti">Bukti Bayar<code
+                                                    <label class="col-md-3 label-control" for="bukti">Invoice<code
                                                             style="color:red;">diperlukan</code></label>
                                                     <div class="col-md-9 mx-auto">
                                                         <div class="custom-file">

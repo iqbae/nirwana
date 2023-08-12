@@ -49,26 +49,25 @@ class ReportAppointmentController extends Controller
 
         $type_user_condition = Auth::user()->detail_user->type_user_id;
 
-         // Filter by date range
-    $start_date = $request->input('start_date');
-    $end_date = $request->input('end_date');
+        // Filter by dokter
+        $doctor = Doctor::all();
+        $selectedDoctorId = $request->query('doctor_filter');
+        $selectedType = $request->query('type'); // Ambil nilai query parameter 'type'
 
-    if ($start_date && $end_date) {
-        $appointment = Appointment::whereBetween('date', [$start_date, $end_date]);
-    }
-        // filter bpjs&umum
-        $type = $request->input('type'); // Get the "type" parameter from the request
-
-        if ($type && in_array($type, ['UMUM', 'BPJS'])) {
-            // Filter the data based on the "type" parameter
-            $appointment = Appointment::where('level', ($type === 'UMUM' ? 1 : 2))->orderBy('created_at', 'desc')->get();
+        if ($selectedDoctorId) {
+            $appointment = Appointment::where('doctor_id', $selectedDoctorId)->orderBy('created_at', 'desc')->get();
         } else {
-            // Show all appointments if "type" is not specified or invalid
-            $appointment = Appointment::orderBy('created_at', 'desc')->get();
-            
+            $query = Appointment::query();
+
+            // Jika ada query parameter 'type', filter berdasarkan tipe (UMUM atau BPJS)
+            if ($selectedType && in_array($selectedType, ['UMUM', 'BPJS'])) {
+                $query->where('level', ($selectedType === 'UMUM' ? 1 : 2));
+            }
+
+            $appointment = $query->orderBy('created_at', 'desc')->get();
         }
 
-        return view('pages.backsite.operational.appointment.index', compact('appointment'));
+        return view('pages.backsite.operational.appointment.index', compact('appointment', 'doctor'));
     }
 
     /**
@@ -76,6 +75,13 @@ class ReportAppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //      $start_date = $request->input('start_date');
+    //     $end_date = $request->input('end_date');
+
+    //     if ($start_date && $end_date) {
+    //         $appointment = Appointment::whereBetween('date', [$start_date, $end_date]);
+    //     }
+
     public function create()
     {
         return abort(404);
@@ -124,11 +130,11 @@ class ReportAppointmentController extends Controller
 
         //     $appointment = Appointment::orderBy('created_at', 'desc')->get();
         //     $doctor = Doctor::orderBy('name', 'asc')->get();
-            
+
 
         // return view('pages.backsite.operational.appointment.edit', compact('appointment', 'doctor'));
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -160,15 +166,16 @@ class ReportAppointmentController extends Controller
 
     // custom function
 
-    public function cetak (appointment $appointment){
+    public function cetak(appointment $appointment)
+    {
         abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $type_user_condition = Auth::user()->detail_user->type_user_id;
 
-        if($type_user_condition == 1){
+        if ($type_user_condition == 1) {
             // for admin
             $appointment = Appointment::orderBy('created_at', 'desc')->get();
-        }else{
+        } else {
             // other admin for doctor & patient ( task for everyone here )
             $appointment = Appointment::orderBy('created_at', 'desc')->get();
         }
@@ -176,30 +183,79 @@ class ReportAppointmentController extends Controller
         return view('pages.backsite.operational.appointment.cetak', compact('appointment'));
     }
 
-    public function cetakappointment ($id){
+    public function cetakappointment($id)
+    {
 
         $appointment = Appointment::where('id', $id)->first();
         $transaction = Transaction::orderBy('created_at', 'desc')->get();
 
         return view('pages.backsite.operational.appointment.cetakappointment', compact('transaction', 'appointment'));
-
     }
 
-    public function cetakbpjs (){
+    public function cetakBpjs()
+    {
         abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-    // Filter the data to get BPJS appointments only (level 2)
-    $appointment = Appointment::where('level', 2)->orderBy('created_at', 'desc')->get();
+        // Filter the data to get BPJS appointments only (level 2)
+        $appointment = Appointment::where('level', 2)->orderBy('created_at', 'desc')->get();
 
-    return view('pages.backsite.operational.appointment.cetakbpjs', compact('appointment'));
+        return view('pages.backsite.operational.appointment.cetakBpjs', compact('appointment'));
     }
 
-    public function cetakumum (){
+
+    public function cetakUmum()
+    {
         abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-    // Filter the data to get BPJS appointments only (level 2)
-    $appointment = Appointment::where('level', 1)->orderBy('created_at', 'desc')->get();
+        // Filter the data to get BPJS appointments only (level 2)
+        $appointment = Appointment::where('level', 1)->orderBy('created_at', 'desc')->get();
 
-    return view('pages.backsite.operational.appointment.cetakumum', compact('appointment'));
+        return view('pages.backsite.operational.appointment.cetakUmum', compact('appointment'));
+    }
+
+
+    public function cetakFilterDokter(Request $request)
+    {
+        // Mendapatkan id dokter yang dipilih dari parameter request
+        $doctorId = $request->input('doctor_filter');
+
+        // Jika tidak ada dokter yang dipilih, redirect kembali ke halaman sebelumnya
+        if (!$doctorId) {
+            return redirect()->back()->with('error', 'Please select a doctor.');
+        }
+
+        // Mendapatkan data dokter berdasarkan id yang dipilih
+        $selectedDoctor = Doctor::find($doctorId);
+
+        // Mendapatkan data appointment yang sesuai dengan dokter yang dipilih
+        $appointments = Appointment::where('doctor_id', $doctorId)->orderBy('created_at', 'desc')->get();
+
+        // Load view cetakfilterdokter dengan data yang diperlukan
+        return view('pages.backsite.operational.appointment.cetakfilterdokter', compact('selectedDoctor', 'appointments'));
+    }
+
+
+    public function reportfilter(Request $request)
+    {
+        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $type_user_condition = Auth::user()->detail_user->type_user_id;
+
+        // Filter by dokter
+        // Filter by dokter
+        $doctor = Doctor::all();
+        $selectedDoctorId = $request->input('doctor_filter');
+
+        $appointmentQuery = Appointment::query();
+
+        if ($selectedDoctorId) {
+            $appointmentQuery->where('doctor_id', $selectedDoctorId)->orderBy('created_at', 'desc');
+        } else {
+            $appointmentQuery->orderBy('created_at', 'desc');
+        }
+
+        $appointment = $appointmentQuery->get();
+
+        return view('pages.backsite.operational.appointment.reportfilter', compact('appointment', 'doctor'));
     }
 }
