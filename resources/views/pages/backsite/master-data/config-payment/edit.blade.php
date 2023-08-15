@@ -71,7 +71,7 @@
                                                     <h4 class="form-section"><i class="fa fa-edit"></i> Form Config Payment</h4>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="fee">Fee <code style="color:red;">required</code></label>
+                                                        <label class="col-md-3 label-control" for="fee">Fee Hospital <code style="color:red;">required</code></label>
                                                         <div class="col-md-9 mx-auto">
                                                             <input type="text" id="fee" name="fee" class="form-control" placeholder="example fee 10000" value="{{ old('fee', isset($config_payment) ? $config_payment->fee : '') }}" autocomplete="off" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 0, 'digitsOptional': 0, 'prefix': 'Rp. ', 'placeholder': '0'" required>
 

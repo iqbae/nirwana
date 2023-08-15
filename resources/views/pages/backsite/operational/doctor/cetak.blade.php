@@ -19,7 +19,7 @@
 
         <hr style="border: 2; border-top: solid 3.5px #000000;">
         <div id="title">
-            <h3>DOCTOR LIST REPORT</h3>
+            <h3>DOCTOR  REPORT</h3>
         </div>
         <br>
 
@@ -29,20 +29,23 @@
                 <!-- Zero configuration table -->
                 <div class="row">
                     <div id="isi">               
-                                 <table align="center" width="86%" id="isit" class="grid" style="border:0.2mm solid #000;">
+                                 <table align="center" width="86%" id="isit" class="grid" style="border:0.2mm solid #000; font-size: 20px;">
                                             
                                             <thead>
                                                 <tr>
-                                                    <th>Date</th>
-                                                    <th>Specialist</th>
-                                                    <th>Name</th>
-                                                    <th>Fee</th>
+                                                    <th style="font-size: 20px;">No</th>
+                                                    <th style="font-size: 20px;">Record</th>
+
+                                                    <th style="font-size: 20px;">Specialist</th>
+                                                    <th style="font-size: 20px;">Name</th>
+                                                    <th style="font-size: 20px;">Fee</th>
                                                     {{--  <th>Photo</th>  --}}
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @forelse($doctor as $key => $doctor_item)
                                                     <tr data-entry-id="{{ $doctor_item->id }}">
+                                                        <td>{{ $key + 1 }}</td>
                                                         <td>{{ isset($doctor_item->created_at) ? date("d/m/Y H:i:s",strtotime($doctor_item->created_at)) : '' }}</td>
                                                         <td>{{ $doctor_item->specialist->name ?? '' }}</td>
                                                         <td>{{ $doctor_item->name ?? '' }}</td>

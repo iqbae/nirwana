@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Appointment Report</title>
+    <title>Appointment BPJS Report</title>
+    <style type="text/css">
+        @media print {
+            @page {
+                size: landscape;
+            }
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/css/report.css') }}" />
@@ -26,7 +33,7 @@
 
     <hr style="border: 2; border-top: solid 3.5px #000000;">
     <div id="title">
-        <h3>APPOINTMENT BPJS</h3>
+        <h3>APPOINTMENT BPJS REPORT</h3>
     </div>
     <br>
 
@@ -38,21 +45,23 @@
                 <div id="isi">
                     <table align="center" width="95%" id="isit" class="grid" style="border:0.2mm solid #000;">
 
-                        <thead class="text-center">
+                        <thead class="text-center"  style="font-size: 20px;">
                             <tr>
-                                <th>Date</th>
+                                <th>No</th>
+                                <th>Record</th>
                                 <th>Doctor</th>
                                 <th>Patient</th>
                                 <th>Complaint</th>
-                                <th>Level</th>
+                                <th>Layanan</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="font-size: 16px;">
                             @forelse($appointment as $key => $appointment_item)
                                 <tr data-entry-id="{{ $appointment_item->id }}">
+                                    <td>{{ $key + 1 }}</td>
                                     <td>{{ isset($appointment_item->created_at) ? date('d/m/Y H:i:s', strtotime($appointment_item->created_at)) : '' }}
                                     </td>
                                     <td>{{ $appointment_item->doctor->name ?? '' }}</td>

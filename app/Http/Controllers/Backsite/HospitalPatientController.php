@@ -123,9 +123,14 @@ class HospitalPatientController extends Controller
         abort_if(Gate::denies('hospital_patient_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $hospital_patient = User::whereHas('detail_user', function ($query) {
-                                    return $query->where('type_user_id', 3);
-                                })->orderBy('created_at', 'desc')->get();
-        
+            return $query->where('type_user_id', 3);
+        })->orderBy('created_at', 'desc')->get();
+
+        // Add keys to the collection
+        $hospital_patient = $hospital_patient->map(function ($patient, $key) {
+        $patient->key = $key + 1;
+        return $patient;
+        });
 
         return view('pages.backsite.operational.hospital-patient.cetak', compact('hospital_patient'));
     }

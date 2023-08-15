@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
-
 </head>
-
-
 <body onload="window.print()">
     <h2 align="center">
         <img style="position: absolute left; margin-top:10px;margin-right:700px;margin-bottom:10px;" height="60"
@@ -26,14 +22,14 @@
         <hr style="border: 2; border-top: solid 3.5px #000000;">
 
     </h2>
-
-        <div id="title">
-            <h3>INVOICE</h3>
-        </div>
-        <br>
-    <div class="table-responsive">
-        <table class=" fs-5 table table-striped table-bordered text-inputs-searching default-table">
-            <thead>
+    <div id="title">
+        <h3>INVOICE</h3>
+    </div>
+    <br>
+    <div class="content-container">
+        <!-- Table 1: Data rows -->
+        <table class="table table-striped table-bordered text-inputs-searching default-table">
+            <thead style="font-size: 22px;">
                 {{--  <tr>
                     <th>Date</th>
                     <td>{{ isset($transaction->created_at) ? date("d/m/Y H:i:s",strtotime($transaction->created_at)) : '' }}</td>
@@ -87,24 +83,27 @@
 
                 </tr>
             </thead>
-
-
-
-
         </table>
-        <div class="table-responsive" style="margin-top: 80px;">
-            <table class="fs-5 align-middle table-borderless table ">
-
-                <tr>
-                    <td >
-                        {{ isset($transaction->appointment->user->name) ? $transaction->appointment->user->name : 'N/A' }}
-                    </td>
-                    <td>{{ Auth::user()->name }}<br>(KASIR)</td>
-                </tr>
-
-            </table>
-        </div>
+        <div style="height: 170px;"></div>        
+        <!-- Table 2: Names -->
+        <table class="align-middle table-borderless table names-table">
+            <tr>
+                <td>{{ isset($transaction->appointment->user->name) ? $transaction->appointment->user->name : 'N/A' }}</td>
+                <td>{{ Auth::user()->name }}<br>(KASIR)</td>
+            </tr>
+        </table>
     </div>
 </body>
-
 </html>
+
+<style>
+    .content-container {
+        position: relative;
+    }
+
+    .names-table {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+</style>

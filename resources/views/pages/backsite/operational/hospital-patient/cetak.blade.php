@@ -29,20 +29,22 @@
                 <!-- Zero configuration table -->
                 <div class="row">
                     <div id="isi">               
-                                 <table align="center" width="86%" id="isit" class="grid" style="border:0.2mm solid #000;">
+                                 <table align="center" width="86%" id="isit" class="grid" style="border:0.2mm solid #000; style="font-size: 20px;"">
                                             
-                                            <thead>
+                                            <thead style="font-size: 20px;">
                                                 <tr>
-                                                    <th>Date Registered</th> 
+                                                    <th>No</th>
+                                                    <th>Date Record</th> 
                                                     <th>Patient Name</th>
                                                     <th>No Telp</th>
                                                     <th>Alamat</th>
                                                     <th>Email</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody style="font-size: 20px;">
                                                 @forelse($hospital_patient as $key => $patient_item)
-                                                        <tr data-entry-id="{{ $patient_item->id }}">
+                                                <tr data-entry-id="{{ $patient_item->id }}">
+                                                            <td>{{ $key + 1 }}</td>
                                                             <td>{{ isset($patient_item->created_at) ? date("d/m/Y H:i:s",strtotime($patient_item->created_at)) : '' }}</td>
                                                             <td>{{ $patient_item->name ?? '' }}</td>
                                                             <td>{{ $patient_item->detail_user->contact ?? '' }}</td>

@@ -68,7 +68,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Date</th>
-                                                            <th>Fee</th>
+                                                            <th>Fee Hospital</th>
                                                             <th>Vat</th>
                                                             <th style="text-align:center; width:150px;">Action</th>
                                                         </tr>

@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Doctor Report</title>
+    <title>Detail Doctor Report</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/css/report.css') }}" />
 </head>
@@ -25,19 +25,19 @@
     <div class="">
 <table class="table table-striped table-hover">
     <tr >
-        <th style="width:500px">Specialist</th>
-        <td>{{ isset($doctor->specialist->name) ? $doctor->specialist->name : 'N/A' }}</td>
+        <th style="width:500px; font-size: 22px;">Specialist</th>
+        <td style="font-size: 22px;">{{ isset($doctor->specialist->name) ? $doctor->specialist->name : 'N/A' }}</td>
     </tr>
     <tr>
-        <th>Name</th>
-        <td>{{ isset($doctor->name) ? $doctor->name : 'N/A' }}</td>
+        <th style="font-size: 22px;">Name</th>
+        <td style="font-size: 22px;">{{ isset($doctor->name) ? $doctor->name : 'N/A' }}</td>
     </tr>
     <tr>
-        <th>Fee</th>
-        <td>{{ isset($doctor->fee) ? 'Rp. ' . number_format($doctor->fee) : 'N/A' }}</td>
+        <th style="font-size: 22px;">Fee</th>
+        <td style="font-size: 22px;">{{ isset($doctor->fee) ? 'Rp. ' . number_format($doctor->fee) : 'N/A' }}</td>
     </tr>
     <tr>
-        <th style="height:200px">Photo</th>
+        <th style="height:200px; font-size: 22px;">Photo</th>
         <td>
             <img src="
                 @if ($doctor->photo != '') @if (File::exists('storage/' . $doctor->photo))

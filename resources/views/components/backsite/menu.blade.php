@@ -149,46 +149,46 @@
                 <ul class="menu-content">
 
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.hospital_patient.cetak') }}">
+                        <a class="menu-item" href="{{ route('backsite.hospital_patient.cetak') }}" target="_blank">
                             <i></i><span>Pasien Hospital</span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.doctor.cetak') }}">
+                        <a class="menu-item" href="{{ route('backsite.doctor.cetak') }}" target="_blank">
                             <i></i><span>Doctor</span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.doctor.cetakjadwal') }}">
+                        <a class="menu-item" href="{{ route('backsite.doctor.cetakjadwal') }}" target="_blank">
                             <i></i><span>Schedule Doctor</span>
                         </a>
                     </li>
 
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.cetak') }}">
+                        <a class="menu-item" href="{{ route('backsite.appointment.cetak') }}" target="_blank">
                             <i></i><span>Appointment</span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.reportfilter') }}">
+                        <a class="menu-item" href="{{ route('backsite.appointment.reportfilter') }}" target="_blank">
                             <i></i><span>Appointment By Filter</span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.cetakBpjs') }}">
+                        <a class="menu-item" href="{{ route('backsite.appointment.cetakBpjs') }}" target="_blank">
                             <i></i><span>Appointment BPJS</span>
                         </a>
                     </li>
 
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.cetakUmum') }}">
+                        <a class="menu-item" href="{{ route('backsite.appointment.cetakUmum') }}" target="_blank">
                             <i></i><span>Appointment UMUM</span>
                         </a>
                     </li>
 
 
                     <li class="">
-                        <a class="menu-item" href="{{ route('backsite.transaction.cetak') }}">
+                        <a class="menu-item" href="{{ route('backsite.transaction.cetak') }}" target="_blank">
                             <i></i><span>Transaction</span>
                         </a>
                     </li>

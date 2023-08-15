@@ -3,6 +3,9 @@
 @section('title', 'Register')
 
 @section('content')
+<main>
+    <body>
+        
 
 <div class="px-4 lg:px-[91px] pt-10 pb-12">
 <!-- Logo Brand -->
@@ -22,7 +25,7 @@
     <div class="min-h-screen">
         <div class="grid lg:grid-cols-2">
             <!-- Form -->
-            <div class="px-4 lg:px-[91px] pt-10">
+            <div class="px-4 lg:px-[91px] pt-30">
 
                 
 
@@ -161,5 +164,7 @@
             <!-- End Qoute -->
         </div>
     </div>
+</body>
 
+</main>
 @endsection

@@ -1,17 +1,15 @@
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Appointment Report</title>
+    <title>Appointment By Doctor {{ $selectedDoctor->name }} Report</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/css/report.css') }}" />
-    
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/backsite/app-assets/css/report.css') }}" /> 
 </head>
 
-{{--  <body onload="window.print()">  --}}
+<body onload="window.print()">
 
     {{--  Header  --}}
     <h2 align="center">
@@ -38,16 +36,18 @@
                     <div class="card-body">
                         
                         <table class="table table-striped">
-                            <thead>
+                            <thead style="font-size: 16px;">
                                 <tr>
                                     <th>tanggal</th>
                                     <th style="width: 15%">Nama Pasien</th>
                                     <th>Layanan</th>
                                     <th>Keluhan</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
                                     {{--  Add more columns here as needed  --}}
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="font-size: 16px;">
                                 @foreach($appointments as $appointment)
                                 <tr>
                                     <td>{{ $appointment->date }}</td>
@@ -58,7 +58,8 @@
                                     <span>{{ 'BPJS' }}</span>
                                 @endif</td>
                                     <td>{{ $appointment->complaint }}</td>
-                                    {{-- Add more columns here as needed --}}
+                                    <td>{{ $appointment->date }}</td>
+                                    <td>{{ $appointment->time }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -47,7 +47,7 @@
                 <div class="row align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-uppercase mb-1">Jumlah Dokter</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">14</div>
                    </div>
                   <div class="col-auto">
                     <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -63,7 +63,7 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-uppercase mb-1">Jumlah Pasien</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">60</div>
                     </div>
                   <div class="col-auto">
                     <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -79,7 +79,7 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-uppercase mb-1">Transaksi selesai</div>
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">84</div>
                     </div>
                   <div class="col-auto">
                     <i class="fas fa-users fa-2x text-info"></i>
