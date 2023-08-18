@@ -19,6 +19,7 @@ use App\Http\Controllers\Backsite\ConfigPaymentController;
 use App\Http\Controllers\Backsite\ConsultationController;
 use App\Http\Controllers\Backsite\DoctorController;
 use App\Http\Controllers\Backsite\HospitalPatientController;
+use App\Http\Controllers\Backsite\MyAppointmentController;
 use App\Http\Controllers\Backsite\ReportAppointmentController;
 use App\Http\Controllers\Backsite\ReportTransactionController;
 
@@ -87,6 +88,8 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::get('/hospital_patient/cetak', [HospitalPatientController::class, 'cetak'])->name('hospital_patient.cetak');
     Route::resource('hospital_patient', HospitalPatientController::class);
 
+    //my appointment
+    route::resource('my_appointment', MyAppointmentController::class);
     // report appointment
     Route::get('/appointment/cetak', [ReportAppointmentController::class, 'cetak'])->name('appointment.cetak');
     Route::get('/appointment/cetakBpjs', [ReportAppointmentController::class, 'cetakBpjs'])->name('appointment.cetakBpjs');

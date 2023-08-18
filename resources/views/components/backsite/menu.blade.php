@@ -66,19 +66,19 @@
                             <li
                                 class="{{ request()->is('backsite/specialist') || request()->is('backsite/specialist/*') || request()->is('backsite/*/specialist') || request()->is('backsite/*/specialist/*') ? 'active' : '' }} ">
                                 <a class="menu-item" href="{{ route('backsite.specialist.index') }}">
-                                    <i></i><span>Spacialist</span>
+                                    <i></i><span>Specialist</span>
                                 </a>
                             </li>
                         @endcan
 
-                        @can('consultation_access')
+                        {{--  @can('consultation_access')
                             <li
                                 class="{{ request()->is('backsite/consultation') || request()->is('backsite/consultation/*') || request()->is('backsite/*/consultation') || request()->is('backsite/*/consultation/*') ? 'active' : '' }} ">
                                 <a class="menu-item" href="{{ route('backsite.consultation.index') }}">
                                     <i></i><span>Daftar Konsultasi</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan  --}}
 
                         @can('config_payment_access')
                             <li
@@ -134,7 +134,7 @@
                             <li
                                 class="{{ request()->is('backsite/transaction') || request()->is('backsite/transaction/*') || request()->is('backsite/*/transaction') || request()->is('backsite/*/transaction/*') ? 'active' : '' }} ">
                                 <a class="menu-item" href="{{ route('backsite.transaction.index') }}">
-                                    <i></i><span>transaction</span>
+                                    <i></i><span>Transaction</span>
                                 </a>
                             </li>
                         @endcan
@@ -142,65 +142,81 @@
                     </ul>
                 </li>
             @endcan
+            <li class=" nav-item">
 
+                <a href="#">  
 
-            <li class=" nav-item"><a href="#"><i class="bx bx-file bx-flashing' : 'bx bx-file'"></i><span
-                        class="menu-title" data-i18n="Report">Report</span></a>
+                    <i class="{{ request()->is('backsite/my_appointment') || request()->is('backsite/my_appointment/*') || request()->is('backsite/*/my_appointment') || request()->is('backsite/*/my_appointment/*') ? 'bx bx-calendar-plus bx-flashing' : 'bx bx-calendar-plus' }}"></i><span
+                        class="menu-title" data-i18n="service">Service</span></a>
                 <ul class="menu-content">
-
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.hospital_patient.cetak') }}" target="_blank">
-                            <i></i><span>Pasien Hospital</span>
+                    <li
+                        class="{{ request()->is('backsite/my_appointment') || request()->is('backsite/my_appointment/*') || request()->is('backsite/*/my_appointment') || request()->is('backsite/*/my_appointment/*') ? 'active' : '' }} ">
+                        <a class="menu-item" href="{{ route('backsite.my_appointment.index') }}">
+                            <i></i><span>My Appointment</span>
                         </a>
                     </li>
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.doctor.cetak') }}" target="_blank">
-                            <i></i><span>Doctor</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.doctor.cetakjadwal') }}" target="_blank">
-                            <i></i><span>Schedule Doctor</span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.cetak') }}" target="_blank">
-                            <i></i><span>Appointment</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.reportfilter') }}" target="_blank">
-                            <i></i><span>Appointment By Filter</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.cetakBpjs') }}" target="_blank">
-                            <i></i><span>Appointment BPJS</span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.appointment.cetakUmum') }}" target="_blank">
-                            <i></i><span>Appointment UMUM</span>
-                        </a>
-                    </li>
-
-
-                    <li class="">
-                        <a class="menu-item" href="{{ route('backsite.transaction.cetak') }}" target="_blank">
-                            <i></i><span>Transaction</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="menu-item" >
-                            <i></i><span></span>
-                        </a>
-                    </li>
-
                 </ul>
-            </li>
 
+            </li>
+            @can('report_access')
+                <li class=" nav-item">
+                    <a href="#"><i class="bx bx-file bx-flashing' : 'bx bx-file'"></i><span class="menu-title"
+                            data-i18n="Report">Report</span></a>
+                    <ul class="menu-content">
+
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.hospital_patient.cetak') }}" target="_blank">
+                                <i></i><span>Pasien Hospital</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.doctor.cetak') }}" target="_blank">
+                                <i></i><span>Doctor</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.doctor.cetakjadwal') }}" target="_blank">
+                                <i></i><span>Schedule Doctor</span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.appointment.cetak') }}" target="_blank">
+                                <i></i><span>Appointment</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.appointment.reportfilter') }}" target="_blank">
+                                <i></i><span>Appointment By Filter</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.appointment.cetakBpjs') }}" target="_blank">
+                                <i></i><span>Appointment BPJS</span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.appointment.cetakUmum') }}" target="_blank">
+                                <i></i><span>Appointment UMUM</span>
+                            </a>
+                        </li>
+
+
+                        <li class="">
+                            <a class="menu-item" href="{{ route('backsite.transaction.cetak') }}" target="_blank">
+                                <i></i><span>Transaction</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="menu-item">
+                                <i></i><span></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            @endcan
 
 
         </ul>
