@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 // use everything here
 // use Gate;
 use Auth;
-
+use Carbon\Carbon;
 // use model here
 use App\Models\User;
 use App\Models\Operational\Doctor;
@@ -63,20 +63,58 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
-        $appointment = new Appointment;
+    
+        // Periksa apakah user_id ada di data
+        if (!array_key_exists('user_id', $data)) {
+            return redirect()->back()->with('error', 'User ID tidak ditemukan.');
+        }
+    
+        // Temukan dokter berdasarkan ID
+        $doctor = Doctor::find($data['doctor_id']);
+    
+        // Tentukan hari dalam minggu (misalnya, 'monday', 'Tuesday ', dll.)
+        $day = strtolower(Carbon::parse($data['date'])->format('l'));
+    
+        // Dapatkan waktu mulai dokter untuk hari tertentu
+        $start_time = Carbon::parse($doctor->$day, 'Asia/Jakarta');
+    
+        // Dapatkan janji temu yang sudah ada untuk dokter pada tanggal tertentu
+        $appointments = Appointment::where('doctor_id', $doctor->id)
+            ->where('date', $data['date'])
+            ->orderBy('time', 'asc')
+            ->get();
+    
+        // Tentukan waktu janji temu
+        if ($appointments->isEmpty()) {
+            // Jika tidak ada janji temu, janji temu pertama adalah pada waktu mulai
+            $appointment_time = $start_time;
+        } else {
+            // Jika ada janji temu yang sudah ada, janji temu baru adalah 30 menit setelah yang terakhir
+            $last_appointment = $appointments->last();
+            $appointment_time = Carbon::parse($last_appointment->time, 'Asia/Jakarta')->addMinutes(30);
+        }
+    
+        // Buat janji temu baru
+        $appointment = new Appointment();
         $appointment->doctor_id = $data['doctor_id'];
-        $appointment->user_id = Auth::user()->id;
-        $appointment->complaint = $data['complaint'];
+        $appointment->user_id = $data['user_id'];
         // $appointment->consultation_id = $data['consultation_id'];
         $appointment->level = $data['level_id'];
         $appointment->date = $data['date'];
-        $appointment->time = $data['time'];
-        $appointment->status = 2; // set to waiting payment
+        $appointment->time = $appointment_time->format('H:i:s');
+        $appointment->status = '2'; // Asumsi '2' berarti menunggu pembayaran
+        $appointment->created_at = now();
+        $appointment->updated_at = now();
+        $appointment->complaint = $data['complaint'];
+    
         $appointment->save();
-
+    
+        // Respon sukses
+        alert()->success('Sukses', 'Janji temu berhasil dijadwalkan');
         return redirect()->route('payment.appointment', $appointment->id);
     }
+    
+
 
     /**
      * Display the specified resource.

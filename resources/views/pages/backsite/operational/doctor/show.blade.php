@@ -42,12 +42,12 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ $doctor->senin ?? '' }}</td>
-            <td>{{ $doctor->selasa ?? '' }}</td>
-            <td>{{ $doctor->rabu ?? '' }}</td>
-            <td>{{ $doctor->kamis ?? '' }}</td>
-            <td>{{ $doctor->jumat ?? '' }}</td>
-            <td>{{ $doctor->sabtu ?? '' }}</td>
+            <td>{{ $doctor->monday ?? '' }}</td>
+            <td>{{ $doctor->tuesday ?? '' }}</td>
+            <td>{{ $doctor->wednesday ?? '' }}</td>
+            <td>{{ $doctor->thursday ?? '' }}</td>
+            <td>{{ $doctor->friday ?? '' }}</td>
+            <td>{{ $doctor->saturday ?? '' }}</td>
         </tr>
     </tbody>
 </table>

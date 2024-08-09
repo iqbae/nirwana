@@ -38,12 +38,12 @@
                                 <tbody>
                                     <tr class="text-center">
                                         <td class="px-4 py-4 font-bold ">Jam Praktik</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->senin ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->selasa ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->rabu ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->kamis ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->jumat ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->sabtu ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ $doctor_item->monday ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ $doctor_item->tuesday ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ $doctor_item->wednesday ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ $doctor_item->thursday ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ $doctor_item->friday ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ $doctor_item->saturday ?? '' }}</td>
                                     </tr>
                                 </tbody>
                             </table>

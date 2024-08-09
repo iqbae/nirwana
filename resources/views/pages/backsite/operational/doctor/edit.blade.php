@@ -161,104 +161,104 @@
                                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="senin">Senin <code
+                                                    <label class="col-md-3 label-control" for="monday">monday <code
                                                             style="color:green;">optional</code></label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="senin" name="senin"
+                                                    <div class="col-md-2">
+                                                        <input type="time" id="monday" name="monday"
                                                             class="form-control"
                                                             placeholder="example john doe or jane doe"
-                                                            value="{{ old('senin', isset($specialist) ? $doctor->senin : '') }}"
+                                                            value="{{ old('monday', isset($specialist) ? $doctor->monday : '') }}"
                                                             autocomplete="off">
 
-                                                        @if ($errors->has('senin'))
+                                                        @if ($errors->has('monday'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('senin') }}</p>
+                                                                {{ $errors->first('monday') }}</p>
                                                         @endif
 
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="selasa">selasa <code
+                                                    <label class="col-md-3 label-control" for="tuesday">tuesday <code
                                                             style="color:green;">optional</code></label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="selasa" name="selasa"
+                                                    <div class="col-md-2">
+                                                        <input type="time" id="tuesday" name="tuesday"
                                                             class="form-control"
                                                             placeholder="example john doe or jane doe"
-                                                            value="{{ old('selasa', isset($specialist) ? $doctor->selasa : '') }}"
+                                                            value="{{ old('tuesday', isset($specialist) ? $doctor->tuesday : '') }}"
                                                             autocomplete="off">
 
-                                                        @if ($errors->has('selasa'))
+                                                        @if ($errors->has('tuesday'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('selasa') }}</p>
+                                                                {{ $errors->first('tuesday') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="rabu">rabu <code
+                                                    <label class="col-md-3 label-control" for="wednesday">wednesday <code
                                                             style="color:green;">optional</code></label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="rabu" name="rabu"
+                                                    <div class="col-md-2">
+                                                        <input type="time" id="wednesday" name="wednesday"
                                                             class="form-control"
                                                             placeholder="example john doe or jane doe"
-                                                            value="{{ old('rabu', isset($specialist) ? $doctor->rabu : '') }}"
+                                                            value="{{ old('wednesday', isset($specialist) ? $doctor->wednesday : '') }}"
                                                             autocomplete="off">
 
-                                                        @if ($errors->has('rabu'))
+                                                        @if ($errors->has('wednesday'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('rabu') }}</p>
+                                                                {{ $errors->first('wednesday') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="kamis">kamis <code
+                                                    <label class="col-md-3 label-control" for="thursday">thursday <code
                                                             style="color:green;">optional</code></label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="kamis" name="kamis"
+                                                    <div class="col-md-2">
+                                                        <input type="time" id="thursday" name="thursday"
                                                             class="form-control"
                                                             placeholder="example john doe or jane doe"
-                                                            value="{{ old('kamis', isset($specialist) ? $doctor->kamis : '') }}"
+                                                            value="{{ old('thursday', isset($specialist) ? $doctor->thursday : '') }}"
                                                             autocomplete="off">
 
-                                                        @if ($errors->has('kamis'))
+                                                        @if ($errors->has('thursday'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('kamis') }}</p>
+                                                                {{ $errors->first('thursday') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="jumat">jumat <code
+                                                    <label class="col-md-3 label-control" for="friday">friday <code
                                                             style="color:green;">optional</code></label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="jumat" name="jumat"
+                                                    <div class="col-md-2">
+                                                        <input type="time" id="friday" name="friday"
                                                             class="form-control"
                                                             placeholder="example john doe or jane doe"
-                                                            value="{{ old('jumat', isset($specialist) ? $doctor->jumat : '') }}"
+                                                            value="{{ old('friday', isset($specialist) ? $doctor->friday : '') }}"
                                                             autocomplete="off">
 
-                                                        @if ($errors->has('jumat'))
+                                                        @if ($errors->has('friday'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('jumat') }}</p>
+                                                                {{ $errors->first('friday') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="sabtu">sabtu <code
+                                                    <label class="col-md-3 label-control" for="saturday">saturday <code
                                                             style="color:green;">optional</code></label>
-                                                    <div class="col-md-9 mx-auto">
-                                                        <input type="text" id="sabtu" name="sabtu"
+                                                    <div class="col-md-2">
+                                                        <input type="time" id="saturday" name="saturday"
                                                             class="form-control"
                                                             placeholder="example john doe or jane doe"
-                                                            value="{{ old('sabtu', isset($specialist) ? $doctor->sabtu : '') }}"
+                                                            value="{{ old('saturday', isset($specialist) ? $doctor->saturday : '') }}"
                                                             autocomplete="off">
 
-                                                        @if ($errors->has('sabtu'))
+                                                        @if ($errors->has('saturday'))
                                                             <p style="font-style: bold; color: red;">
-                                                                {{ $errors->first('sabtu') }}</p>
+                                                                {{ $errors->first('saturday') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>

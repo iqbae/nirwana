@@ -42,12 +42,18 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        // for table grid
-        $doctor = Doctor::orderBy('created_at', 'desc')->get();
+        $query = Doctor::orderBy('created_at', 'desc');
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('name', 'like', '%' . $searchTerm . '%');
+        }
+    
+        $doctor = $query->get();
 
         // for select2 = ascending a to z
         $specialist = Specialist::orderBy('name', 'asc')->get();
@@ -76,23 +82,12 @@ class DoctorController extends Controller
         // get all request from frontsite
         $data = $request->all();
 
-        // re format before push to table
-        $data['fee'] = str_replace(',', '', $data['fee']);
-        $data['fee'] = str_replace('Rp. ', '', $data['fee']);
+        $data['fee'] = str_replace(['Rp. ', ','], '', $data['fee']);
 
-        // upload process here
-        $path = public_path('app/public/assets/file-doctor');
-        if(!File::isDirectory($path)){
-            $response = Storage::makeDirectory('public/assets/file-doctor');
-        }
-
-        // change file locations
-        if(isset($data['photo'])){
-            $data['photo'] = $request->file('photo')->store(
-                'assets/file-doctor', 'public'
-            );
-        }else{
-            $data['photo'] = "";
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('assets/file-doctor', 'public');
+        } else {
+            $data['photo'] = '';
         }
 
         // store to database
@@ -143,32 +138,19 @@ class DoctorController extends Controller
     {
         // get all request from frontsite
         $data = $request->all();
+        $data['fee'] = str_replace(['Rp. ', ','], '', $data['fee']);
 
-        // re format before push to table
-        $data['fee'] = str_replace(',', '', $data['fee']);
-        $data['fee'] = str_replace('Rp. ', '', $data['fee']);
+          if ($request->hasFile('photo')) {
+        $oldPhoto = $doctor->photo;
+        $data['photo'] = $request->file('photo')->store('assets/file-doctor', 'public');
 
-        // upload process here
-        // change format photo
-        if(isset($data['photo'])){
-
-             // first checking old photo to delete from storage
-            $get_item = $doctor['photo'];
-
-            // change file locations
-            $data['photo'] = $request->file('photo')->store(
-                'assets/file-doctor', 'public'
-            );
-
-            // delete old photo from storage
-            $data_old = 'storage/'.$get_item;
-            if (File::exists($data_old)) {
-                File::delete($data_old);
-            }else{
-                File::delete('storage/app/public/'.$get_item);
-            }
-
+        if (File::exists('storage/' . $oldPhoto)) {
+            File::delete('storage/' . $oldPhoto);
+        } else {
+            File::delete('storage/app/public/' . $oldPhoto);
         }
+    }
+
 
         // update to database
         $doctor->update($data);

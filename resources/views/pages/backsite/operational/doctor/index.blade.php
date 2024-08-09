@@ -135,68 +135,68 @@
                                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                                         </div>
                                                             <div class="form-group row">
-                                                                <label class="col-md-3 label-control" for="senin">Senin <code style="color:green;">optional</code></label>
+                                                                <label class="col-md-3 label-control" for="monday">Senin <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-9 mx-auto">
-                                                                    <input type="text" id="senin" name="senin" class="form-control" placeholder="example john doe or jane doe" value="{{old('senin')}}" autocomplete="off" >
+                                                                    <input type="time" id="monday" name="monday" class="form-control" placeholder="example john doe or jane doe" value="{{old('monday')}}" autocomplete="off" >
 
-                                                                    @if($errors->has('senin'))
-                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('senin') }}</p>
+                                                                    @if($errors->has('monday'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('monday') }}</p>
                                                                     @endif
                                                                     
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label class="col-md-3 label-control" for="selasa">selasa <code style="color:green;">optional</code></label>
+                                                                <label class="col-md-3 label-control" for="tuesday">selasa <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-9 mx-auto">
-                                                                    <input type="text" id="selasa" name="selasa" class="form-control" placeholder="example john doe or jane doe" value="{{old('selasa')}}" autocomplete="off" >
+                                                                    <input type="time" id="tuesday" name="tuesday" class="form-control" placeholder="example john doe or jane doe" value="{{old('tuesday')}}" autocomplete="off" >
 
-                                                                    @if($errors->has('selasa'))
-                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('selasa') }}</p>
+                                                                    @if($errors->has('tuesday'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('tuesday') }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label class="col-md-3 label-control" for="rabu">rabu <code style="color:green;">optional</code></label>
+                                                                <label class="col-md-3 label-control" for="wednesday">rabu <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-9 mx-auto">
-                                                                    <input type="text" id="rabu" name="rabu" class="form-control" placeholder="example john doe or jane doe" value="{{old('rabu')}}" autocomplete="off" >
+                                                                    <input type="time" id="wednesday" name="wednesday" class="form-control" placeholder="example john doe or jane doe" value="{{old('wednesday')}}" autocomplete="off" >
 
-                                                                    @if($errors->has('rabu'))
-                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('rabu') }}</p>
+                                                                    @if($errors->has('wednesday'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('wednesday') }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label class="col-md-3 label-control" for="kamis">kamis <code style="color:green;">optional</code></label>
+                                                                <label class="col-md-3 label-control" for="thursday">kamis <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-9 mx-auto">
-                                                                    <input type="text" id="kamis" name="kamis" class="form-control" placeholder="example john doe or jane doe" value="{{old('kamis')}}" autocomplete="off" >
+                                                                    <input type="time" id="thursday" name="thursday" class="form-control" placeholder="example john doe or jane doe" value="{{old('thursday')}}" autocomplete="off" >
 
-                                                                    @if($errors->has('kamis'))
-                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('kamis') }}</p>
+                                                                    @if($errors->has('thursday'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('thursday') }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label class="col-md-3 label-control" for="jumat">jumat <code style="color:green;">optional</code></label>
+                                                                <label class="col-md-3 label-control" for="friday">jumat <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-9 mx-auto">
-                                                                    <input type="text" id="jumat" name="jumat" class="form-control" placeholder="example john doe or jane doe" value="{{old('jumat')}}" autocomplete="off" >
+                                                                    <input type="time" id="friday" name="friday" class="form-control" placeholder="example john doe or jane doe" value="{{old('friday')}}" autocomplete="off" >
 
-                                                                    @if($errors->has('jumat'))
-                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('jumat') }}</p>
+                                                                    @if($errors->has('friday'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('friday') }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label class="col-md-3 label-control" for="sabtu">sabtu <code style="color:green;">optional</code></label>
+                                                                <label class="col-md-3 label-control" for="saturday">sabtu <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-9 mx-auto">
-                                                                    <input type="text" id="sabtu" name="sabtu" class="form-control" placeholder="example john doe or jane doe" value="{{old('sabtu')}}" autocomplete="off" >
+                                                                    <input type="time" id="saturday" name="saturday" class="form-control" placeholder="example john doe or jane doe" value="{{old('saturday')}}" autocomplete="off" >
 
-                                                                    @if($errors->has('sabtu'))
-                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('sabtu') }}</p>
+                                                                    @if($errors->has('saturday'))
+                                                                        <p style="font-style: bold; color: red;">{{ $errors->first('saturday') }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -376,12 +376,12 @@
                                                         @forelse($doctor as $key => $doctor_item)
                                                             <tr data-entry-id="{{ $doctor_item->id }}">
                                                                <td>{{ $doctor_item->name ?? '' }}</td>
-                                                                <td>{{ $doctor_item->senin ?? '' }}</td>
-                                                                <td>{{ $doctor_item->selasa ?? '' }}</td>
-                                                                <td>{{ $doctor_item->rabu ?? '' }}</td>
-                                                                <td>{{ $doctor_item->kamis ?? '' }}</td>
-                                                                <td>{{ $doctor_item->jumat ?? '' }}</td>
-                                                                <td>{{ $doctor_item->sabtu ?? '' }}</td>
+                                                                <td>{{ $doctor_item->monday ?? '' }}</td>
+                                                                <td>{{ $doctor_item->tuesday ?? '' }}</td>
+                                                                <td>{{ $doctor_item->wednesday ?? '' }}</td>
+                                                                <td>{{ $doctor_item->thursday ?? '' }}</td>
+                                                                <td>{{ $doctor_item->friday ?? '' }}</td>
+                                                                <td>{{ $doctor_item->saturday ?? '' }}</td>
                                                             </tr>
                                                         @empty
                                                             {{-- not found --}}
@@ -464,7 +464,7 @@
             "order": [],
             "paging": true,
             "lengthMenu": [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"] ],
-            "pageLength": 3
+            "pageLength": 5
             
         });
 
