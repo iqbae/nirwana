@@ -75,26 +75,25 @@
             <div class="mx-auto max-w-7xl px-4 lg:px-14 py-0">
                 <h3 class="text-2xl font-semibold">Spesialis Kami</h3>
                 <p class="text-[#A7B0B5] mt-2">Pilihan spesialis yang tersedia untuk anda</p>
-
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-10 lg:gap-12 mt-10">
+        
+                <div id="specialist-container" class="flex gap-6 sm:gap-8 md:gap-10 lg:gap-12 overflow-x-auto whitespace-nowrap scrollbar-hide mt-10">
                     @forelse($specialist as $key => $specialist_item)
                         <!-- Card -->
-                            <a  class="bg-white py-6 px-5 rounded-2xl transition hover:ring-offset-2 hover:ring-2 hover:ring-[#0EFB71]">
-                                <h5 class="text-[#1E2B4F] text-lg font-semibold">{{ $specialist_item->name ?? '' }}</h5>
-                                {{--  <p class="text-[#AFAEC3] mt-1">143 doctors</p>  --}}
-                            </a>
+                        <a class="bg-white py-3 px-5 rounded-2xl inline-block transition">
+                            <h5 class="text-[#1E2B4F] text-lg font-semibold specialist-name">{{ $specialist_item->name ?? '' }}</h5>
+                        </a>
                         <!-- End Card -->
                     @empty
                     {{-- empty --}}
                     @endforelse
                 </div>
-
             </div>
         </section>
+        
         <!-- End Popular Categories -->
 
         <!-- Best Doctors -->
-        <section class="mt-4 lg:mt-10">
+        <section class="mt-3 lg:mt-10">
             <div class="mx-auto max-w-7xl px-4 lg:px-14 py-14">
                 <h3 class="text-[#1E2B4F] text-2xl font-semibold">Dokter Kami</h3>
                 <p class="text-[#A7B0B5] mt-2">Membantu hidup Anda menjadi lebih baik</p>

@@ -178,8 +178,14 @@
             altFormat: 'd F Y',
             dateFormat: 'Y-m-d',
             disableMobile: 'true',
-            minDate: "today",
-            maxDate: new Date().fp_incr(6) // 5 days from now
+            minDate: new Date().fp_incr(1), // Set minDate to tomorrow
+            maxDate: new Date().fp_incr(7), // 6 days from today
+            disable: [
+                function(date) {
+                    // Disable Sundays
+                    return (date.getDay() === 0);
+                }
+            ] 
         });
     </script>
 @endpush
