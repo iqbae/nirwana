@@ -136,7 +136,7 @@
                                                         </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="monday">Senin <code style="color:green;">optional</code></label>
-                                                                <div class="col-md-9 mx-auto">
+                                                                <div class="col-md-2 ">
                                                                     <input type="time" id="monday" name="monday" class="form-control" placeholder="example john doe or jane doe" value="{{old('monday')}}" autocomplete="off" >
 
                                                                     @if($errors->has('monday'))
@@ -148,7 +148,7 @@
 
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="tuesday">selasa <code style="color:green;">optional</code></label>
-                                                                <div class="col-md-9 mx-auto">
+                                                                <div class="col-md-2 ">
                                                                     <input type="time" id="tuesday" name="tuesday" class="form-control" placeholder="example john doe or jane doe" value="{{old('tuesday')}}" autocomplete="off" >
 
                                                                     @if($errors->has('tuesday'))
@@ -159,7 +159,7 @@
 
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="wednesday">rabu <code style="color:green;">optional</code></label>
-                                                                <div class="col-md-9 mx-auto">
+                                                                <div class="col-md-2 ">
                                                                     <input type="time" id="wednesday" name="wednesday" class="form-control" placeholder="example john doe or jane doe" value="{{old('wednesday')}}" autocomplete="off" >
 
                                                                     @if($errors->has('wednesday'))
@@ -170,7 +170,7 @@
 
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="thursday">kamis <code style="color:green;">optional</code></label>
-                                                                <div class="col-md-9 mx-auto">
+                                                                <div class="col-md-2 ">
                                                                     <input type="time" id="thursday" name="thursday" class="form-control" placeholder="example john doe or jane doe" value="{{old('thursday')}}" autocomplete="off" >
 
                                                                     @if($errors->has('thursday'))
@@ -181,7 +181,7 @@
 
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="friday">jumat <code style="color:green;">optional</code></label>
-                                                                <div class="col-md-9 mx-auto">
+                                                                <div class="col-md-2 ">
                                                                     <input type="time" id="friday" name="friday" class="form-control" placeholder="example john doe or jane doe" value="{{old('friday')}}" autocomplete="off" >
 
                                                                     @if($errors->has('friday'))
@@ -192,7 +192,7 @@
 
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="saturday">sabtu <code style="color:green;">optional</code></label>
-                                                                <div class="col-md-9 mx-auto">
+                                                                <div class="col-md-2 ">
                                                                     <input type="time" id="saturday" name="saturday" class="form-control" placeholder="example john doe or jane doe" value="{{old('saturday')}}" autocomplete="off" >
 
                                                                     @if($errors->has('saturday'))
