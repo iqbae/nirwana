@@ -40,13 +40,13 @@ Route::resource('/', LandingController::class);
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     // appointment page
+    
     Route::get('appointment/doctor/{id}', [AppointmentController::class, 'appointment'])->name('appointment.doctor');
     Route::resource('appointment', AppointmentController::class);
-
     // payment page
     Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('payment/appointment/{id}', [PaymentController::class, 'payment'])->name('payment.appointment');
-    Route::get('payment/appointment/{id}/bukti', [PaymentController::class, 'bukti'])->name('payment.bukti');
+    Route::get('/payment/appointment/{id}/receipt', [PaymentController::class, 'printReceipt'])->name('payment.receipt');
     Route::resource('payment', PaymentController::class);
 
     Route::resource('register_success', RegisterController::class);

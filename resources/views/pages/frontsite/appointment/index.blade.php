@@ -13,39 +13,36 @@
     <div class="min-h-screen">
         <div class="lg:max-w-7xl lg:flex items-center mx-auto px-4 lg:px-14 pt-6 py-20 lg:py-24 gap-x-24">
             <!-- Detail Doctor  -->
-            <div class="lg:w-5/12 lg:border-r h-72 lg:h-[30rem] flex flex-col items-center justify-center text-center">
-                <img src="{{ url(Storage::url($doctor->photo)) }}"
-                    class="inline-block w-32 h-32 rounded-full bg-center object-cover object-top" alt="doctor-1" />
-                <div class="text-[#1E2B4F] text-lg font-semibold mt-4">
-                    {{ $doctor->name ?? '' }}
-                </div>
+            @if(isset($doctor) && $doctor)
+    <div class="lg:w-5/12 lg:border-r h-72 lg:h-[30rem] flex flex-col items-center justify-center text-center">
+        <img src="{{ url(Storage::url($doctor->photo)) }}" 
+             class="inline-block w-32 h-32 rounded-full bg-center object-cover object-top" alt="doctor-1" />
+        <div class="text-[#1E2B4F] text-lg font-semibold mt-4">
+            {{ $doctor->name ?? '' }}
+        </div>
 
-                <div class="text-[#AFAEC3] mt-1">{{ $doctor->specialist->name ?? '' }}</div>
+        <div class="text-[#AFAEC3] mt-1">{{ $doctor->specialist->name ?? '' }}</div>
 
-                <div class="flex justify-center items-center gap-x-2 mt-4">
-                    <!-- Rating stars -->
-                </div>
-                
-                <!-- Tabel -->
-                <div class="mt-6">
-                    <table class="text-[#1E2B4F] table-auto mt-2">
-                        <thead>
-                            <tr>
-                                <th class="px-4 py-2">Hari</th>
-                                <th class="px-4 py-2">Jam Praktek</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="border px-4 py-2">Senin</td>
-                                <td class="border px-4 py-2">{{ $doctor->monday ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2">Selasa</td>
-                                <td class="border px-4 py-2">{{ $doctor->tuesday ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2">Rabu</td>
+        <!-- Jadwal -->
+        <div class="mt-6">
+            <table class="text-[#1E2B4F] table-auto mt-2">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Hari</th>
+                        <th class="px-4 py-2">Jam Praktek</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border px-4 py-2">Senin</td>
+                        <td class="border px-4 py-2">{{ $doctor->monday ?? '' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2">Selasa</td>
+                        <td class="border px-4 py-2">{{ $doctor->tuesday ?? '' }}</td>
+                    </tr>
+                    <tr>
+                             <td class="border px-4 py-2">Rabu</td>
                                 <td class="border px-4 py-2">{{ $doctor->wednesday ?? '' }}</td>
                             </tr>
                             <tr>
@@ -60,10 +57,14 @@
                                 <td class="border px-4 py-2">Sabtu</td>
                                 <td class="border px-4 py-2">{{ $doctor->saturday ?? '' }}</td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+@else
+    <p>Data dokter tidak tersedia atau terjadi kesalahan.</p>
+@endif
+
 
             <!-- Form Appointment -->
             <div class="lg:w-1/3 mt-10 lg:mt-0">

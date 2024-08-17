@@ -72,6 +72,10 @@ class AppointmentController extends Controller
         // Temukan dokter berdasarkan ID
         $doctor = Doctor::find($data['doctor_id']);
     
+        if (!$doctor) {
+            return redirect()->back()->with('error', 'Dokter tidak ditemukan.');
+        }
+    
         // Tentukan hari dalam minggu (misalnya, 'monday', 'Tuesday ', dll.)
         $day = strtolower(Carbon::parse($data['date'])->format('l'));
     
@@ -94,11 +98,13 @@ class AppointmentController extends Controller
             $appointment_time = Carbon::parse($last_appointment->time, 'Asia/Jakarta')->addMinutes(30);
         }
     
+         // Tentukan nomor antrian
+        $queue_number = $appointments->count() + 1;
+
         // Buat janji temu baru
         $appointment = new Appointment();
         $appointment->doctor_id = $data['doctor_id'];
         $appointment->user_id = $data['user_id'];
-        // $appointment->consultation_id = $data['consultation_id'];
         $appointment->level = $data['level_id'];
         $appointment->date = $data['date'];
         $appointment->time = $appointment_time->format('H:i:s');
@@ -106,7 +112,7 @@ class AppointmentController extends Controller
         $appointment->created_at = now();
         $appointment->updated_at = now();
         $appointment->complaint = $data['complaint'];
-    
+        $appointment->queue_number = $queue_number; // Menetapkan nomor antrian
         $appointment->save();
     
         // Respon sukses
@@ -170,5 +176,8 @@ class AppointmentController extends Controller
         // $consultation = Consultation::orderBy('name', 'asc')->get();        , 'consultation'
 
         return view('pages.frontsite.appointment.index', compact('doctor'));
-    }
+    }  
+    
+
+
 }

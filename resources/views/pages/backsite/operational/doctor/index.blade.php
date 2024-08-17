@@ -137,7 +137,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="monday">Senin <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-2 ">
-                                                                    <input type="time" id="monday" name="monday" class="form-control" placeholder="example john doe or jane doe" value="{{old('monday')}}" autocomplete="off" >
+                                                                    <input type="time" id="monday" name="monday" class="form-control">
 
                                                                     @if($errors->has('monday'))
                                                                         <p style="font-style: bold; color: red;">{{ $errors->first('monday') }}</p>
@@ -149,7 +149,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="tuesday">selasa <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-2 ">
-                                                                    <input type="time" id="tuesday" name="tuesday" class="form-control" placeholder="example john doe or jane doe" value="{{old('tuesday')}}" autocomplete="off" >
+                                                                    <input type="time" id="tuesday" name="tuesday" class="form-control">
 
                                                                     @if($errors->has('tuesday'))
                                                                         <p style="font-style: bold; color: red;">{{ $errors->first('tuesday') }}</p>
@@ -160,7 +160,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="wednesday">rabu <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-2 ">
-                                                                    <input type="time" id="wednesday" name="wednesday" class="form-control" placeholder="example john doe or jane doe" value="{{old('wednesday')}}" autocomplete="off" >
+                                                                    <input type="time" id="wednesday" name="wednesday" class="form-control">
 
                                                                     @if($errors->has('wednesday'))
                                                                         <p style="font-style: bold; color: red;">{{ $errors->first('wednesday') }}</p>
@@ -171,7 +171,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="thursday">kamis <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-2 ">
-                                                                    <input type="time" id="thursday" name="thursday" class="form-control" placeholder="example john doe or jane doe" value="{{old('thursday')}}" autocomplete="off" >
+                                                                    <input type="time" id="thursday" name="thursday" class="form-control">
 
                                                                     @if($errors->has('thursday'))
                                                                         <p style="font-style: bold; color: red;">{{ $errors->first('thursday') }}</p>
@@ -182,7 +182,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="friday">jumat <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-2 ">
-                                                                    <input type="time" id="friday" name="friday" class="form-control" placeholder="example john doe or jane doe" value="{{old('friday')}}" autocomplete="off" >
+                                                                    <input type="time" id="friday" name="friday" class="form-control"  >
 
                                                                     @if($errors->has('friday'))
                                                                         <p style="font-style: bold; color: red;">{{ $errors->first('friday') }}</p>
@@ -193,7 +193,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 label-control" for="saturday">sabtu <code style="color:green;">optional</code></label>
                                                                 <div class="col-md-2 ">
-                                                                    <input type="time" id="saturday" name="saturday" class="form-control" placeholder="example john doe or jane doe" value="{{old('saturday')}}" autocomplete="off" >
+                                                                    <input type="time" id="saturday" name="saturday" class="form-control"  >
 
                                                                     @if($errors->has('saturday'))
                                                                         <p style="font-style: bold; color: red;">{{ $errors->first('saturday') }}</p>
@@ -310,16 +310,6 @@
                                                             {{-- not found --}}
                                                         @endforelse
                                                     </tbody>
-                                                    {{--  <tfoot>
-                                                        <tr>
-                                                            <th>Date</th>
-                                                            <th>Specialist</th>
-                                                            <th>Name</th>
-                                                            <th>Fee</th>
-                                                            <th>Photo</th>
-                                                            <th style="text-align:center; width:150px;">Action</th>
-                                                        </tr>
-                                                    </tfoot>  --}}
                                                 </table>
                                             </div>
 
@@ -387,17 +377,7 @@
                                                             {{-- not found --}}
                                                         @endforelse
                                                     </tbody>
-                                                    {{--  <tfoot>
-                                                        <tr>
-                                                            <th>Nama</th>
-                                                            <th>Senin</th>
-                                                            <th>Selasa</th>
-                                                            <th>Rabu</th>
-                                                            <th>Kamis</th>
-                                                            <th>Jumat</th>
-                                                            <th>Sabtu</th>
-                                                        </tr>
-                                                    </tfoot>  --}}
+                                                   
                                                 </table>
                                             </div>
 

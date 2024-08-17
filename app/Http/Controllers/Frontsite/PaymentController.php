@@ -178,4 +178,22 @@ class PaymentController extends Controller
         
         return view('pages.frontsite.payment.bukti');
     }
+
+    public function printReceipt($id)
+    {
+        // Mendapatkan data appointment berdasarkan ID
+        $appointment = Appointment::findOrFail($id);
+        
+        // Mendapatkan konfigurasi pembayaran
+        $config_payment = ConfigPayment::first(); // Atau sesuaikan dengan logika yang ada
+        
+        // Menghitung total dengan PPN
+        $total_with_vat = $appointment->doctor->specialist->price + $appointment->doctor->fee + $config_payment->fee;
+        $grand_total = $total_with_vat + ($total_with_vat * $config_payment->vat / 100);
+        
+        // Mengarahkan ke tampilan untuk mencetak struk
+        return view('pages.frontsite.payment.receipt', compact('appointment', 'config_payment', 'total_with_vat', 'grand_total'));
+
+    }
 }
+

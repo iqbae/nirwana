@@ -152,6 +152,11 @@
                     </div>
 
                     <div class="flex items-center justify-between mt-5">
+                        <div class="text-[#AFAEC3] font-medium">Antrian</div>
+                        <div class="text-[#1E2B4F] font-medium">{{ ($appointment->queue_number) ?? '' }}</div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-5">
                         <div class="text-[#AFAEC3] font-medium">Status</div>
                         <div class="text-[#1E2B4F] font-medium">
                             @if ($appointment->status == 1)
@@ -168,7 +173,7 @@
                 <!-- Payment Information -->
                 <div class="mt-16">
                     <h5 class="text-[#1E2B4F] text-lg font-semibold">
-                        Payment Information
+                        Informasi Pembayaran
                     </h5>
 
                     <div class="flex items-center justify-between mt-5">
@@ -178,24 +183,24 @@
                     </div>
 
                     <div class="flex items-center justify-between mt-5">
-                        <div class="text-[#AFAEC3] font-medium">Fee dokter</div>
+                        <div class="text-[#AFAEC3] font-medium">Jasa Dokter</div>
                         <div class="text-[#1E2B4F] font-medium">
                             {{ 'Rp. ' . number_format($appointment->doctor->fee) ?? '' }}</div>
                     </div>
 
                     <div class="flex items-center justify-between mt-5">
-                        <div class="text-[#AFAEC3] font-medium">Fee hospital</div>
+                        <div class="text-[#AFAEC3] font-medium">Jasa Rumah sakit</div>
                         <div class="text-[#1E2B4F] font-medium">{{ 'Rp. ' . number_format($config_payment->fee) ?? '' }}
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between mt-5">
-                        <div class="text-[#AFAEC3] font-medium">VAT {{ $config_payment->vat ?? '' }}%</div>
+                        <div class="text-[#AFAEC3] font-medium">PPN {{ $config_payment->vat ?? '' }}%</div>
                         <div class="text-[#1E2B4F] font-medium">{{ 'Rp. ' . number_format($total_with_vat) ?? '' }}</div>
                     </div>
 
                     <div class="flex items-center justify-between mt-5">
-                        <div class="text-[#AFAEC3] font-medium">Grand total</div>
+                        <div class="text-[#AFAEC3] font-medium">Total</div>
                         <div class="text-[#2AB49B] font-semibold">{{ 'Rp. ' . number_format($grand_total) ?? '' }}</div>
                     </div>
                 </div>
@@ -218,45 +223,7 @@
                     <p class="text-[#AFAEC3] text-sm mt-2">
                         Pastikan kembali semua data telah benar. Silahkan simpan terlebih dahulu sebagai bukti anda melakukan janji dengan dokter.
                     </p>
-                    {{--  <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-5">
-                        <div class="relative">
-                            <input type="radio" name="payment" x-model="payment" value="master-card" id="master-card"
-                                class="sr-only peer" />
-
-                            <label
-                                class="flex flex-col justify-center items-center bg-white border-[#EDEDED] cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-[#0D63F3] peer-checked:ring-2 peer-checked:border-transparent rounded-3xl border-2 p-7"
-                                for="master-card">
-                                <img src="{{ asset('/assets/frontsite/images/mandiri.png') }}"
-                                    class="max-h-[50px] inline-block" alt="Master card" />
-                            </label>
-                        </div>
-
-                        <div class="relative">
-                            <input type="radio" name="payment" x-model="payment" value="visa" id="visa"
-                                class="sr-only peer" />
-                            <label
-                                class="flex flex-col justify-center items-center bg-white border-[#EDEDED] cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-[#0D63F3] peer-checked:ring-2 peer-checked:border-transparent rounded-3xl border-2 p-7"
-                                for="visa">
-                                <img src="{{ asset('/assets/frontsite/images/qris.png') }}"
-                                    class="max-h-[50px] inline-block" alt="Master card" />
-                            </label>
-                        </div>
-
-                    </div>  --}}
                     
-
-                    {{--  <div class="mt-10 grid">
-                        <!--button when payment is filled.-->
-                        <button type="submit" class="bg-[#0EFB71] text-white px-10 py-3 rounded-full text-center"
-                            x-show="payment.length"
-                            onclick="return confirm('Apa Anda yakin ingin membayar jadwal janji ?')">Bayar</button>
-
-                        <!--button when payment is empty.-->
-                        <span x-show="!payment.length"
-                            class="bg-[#C0CADA] text-[#808997] cursor-not-allowed px-10 py-3 rounded-full text-center">
-                            Bayar
-                        </span>
-                    </div>  --}}
                     <div class="mt-10 grid">
                         <input type="hidden" name="appointment_id" value="{{ $id ?? '' }}">
                             <button type="submit" class="bg-[#0EFB71] text-white px-10 py-3 rounded-full text-center"
@@ -272,7 +239,9 @@
             
 
             <div class="mt-10 grid">
-                <button class="bg-[#C0CADA] text-white px-10 py-3 rounded-full text-center" id="printBtn">Simpan</button>
+                <a href="{{ route('payment.receipt', $appointment->id) }}" class="bg-[#C0CADA] text-white px-10 py-3 rounded-full text-center">Cetak Struk</a>
+
+                {{--  <button class="bg-[#C0CADA] text-white px-10 py-3 rounded-full text-center" id="printBtn">Simpan</button>  --}}
 
                {{-- <button type="submit" class="bg-[#C0CADA] text-white px-10 py-3 rounded-full text-center"
                         onclick="return confirm('Pastikan melakukan pembayaran kekasir setibanya dirumah sakit')">Cetak</button>
