@@ -25,7 +25,7 @@
                         <h1>
                             <div class="flex items-center">
                                 <span class="text-white text-xs sm:text-sm font-medium bg-[#2AB49B] rounded-full px-8 py-2">Soon</span>
-                                <span class="text-[#1E2B4F] text-[11px] sm:text-sm bg-[#F2F6FE] rounded-r-full px-8 py-2 relative -z-10 -ml-4">Fitur pembayaran sedang dikembangkan</span>
+                                <span class="text-[#1E2B4F] text-[11px] sm:text-sm bg-[#F2F6FE] rounded-r-full px-8 py-2 relative -z-10 -ml-4">Fitur pembayaran online sedang dikembangkan</span>
                             </div>
 
                             <span class="mt-6 block text-4xl font-semibold sm:text-5xl">
@@ -63,8 +63,9 @@
                             <a href="{{ route('register') }}" class="text-white text-lg font-medium text-center bg-[#0EFB71] rounded-full px-12 py-3">Daftar</a>
                             {{--  <a href="#" class="text-[#1E2B4F] text-lg font-medium text-center bg-[#F2F6FE] rounded-full px-16 py-3">Story</a>  --}}
                             @endguest
+
                             @auth
-                            <div class=" px-12 py-3"></div>
+                            <div class=" px-12 my-5"></div>
                                 
                             @endauth
                         </div>
