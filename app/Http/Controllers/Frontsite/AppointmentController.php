@@ -19,7 +19,7 @@ use App\Models\Operational\Doctor;
 use App\Models\Operational\Appointment;
 use App\Models\MasterData\Specialist;
 use App\Models\MasterData\Consultation;
-
+use App\Notifications\AppointmentReminder;
 // thirdparty package
 
 class AppointmentController extends Controller
@@ -178,6 +178,17 @@ class AppointmentController extends Controller
         return view('pages.frontsite.appointment.index', compact('doctor'));
     }  
     
-
+ 
+    
+    // protected function schedule(Schedule $schedule)
+    // {
+    //     $schedule->call(function () {
+    //         $appointments = Appointment::whereDate('date', now()->toDateString())->get();
+    //         foreach ($appointments as $appointment) {
+    //             $user = $appointment->user;
+    //             $user->notify(new AppointmentReminder($appointment));
+    //         }
+    //     })->daily();
+    // }
 
 }

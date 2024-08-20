@@ -38,12 +38,12 @@
                                 <tbody>
                                     <tr class="text-center">
                                         <td class="px-4 py-4 font-bold ">Jam Praktik</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->monday ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->tuesday ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->wednesday ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->thursday ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->friday ?? '' }}</td>
-                                        <td class="px-4 py-4">{{ $doctor_item->saturday ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ substr($doctor_item->monday, 0, 5) ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ substr($doctor_item->tuesday, 0, 5) ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ substr($doctor_item->wednesday, 0, 5) ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ substr($doctor_item->thursday, 0, 5) ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ substr($doctor_item->friday, 0, 5) ?? '' }}</td>
+                                        <td class="px-4 py-4">{{ substr($doctor_item->saturday, 0, 5) ?? '' }}</td>
                                     </tr>
                                 </tbody>
                             </table>

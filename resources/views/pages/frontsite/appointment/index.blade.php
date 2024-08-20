@@ -35,28 +35,28 @@
                 <tbody>
                     <tr>
                         <td class="border px-4 py-2">Senin</td>
-                        <td class="border px-4 py-2">{{ $doctor->monday ?? '' }}</td>
+                        <td class="border px-4 py-2">{{ substr($doctor->monday, 0, 5) ?? '' }}</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2">Selasa</td>
-                        <td class="border px-4 py-2">{{ $doctor->tuesday ?? '' }}</td>
+                        <td class="border px-4 py-2">{{ substr($doctor->tuesday, 0, 5) ?? '' }}</td>
                     </tr>
                     <tr>
-                             <td class="border px-4 py-2">Rabu</td>
-                                <td class="border px-4 py-2">{{ $doctor->wednesday ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2">Kamis</td>
-                                <td class="border px-4 py-2">{{ $doctor->thursday ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2">Jumat</td>
-                                <td class="border px-4 py-2">{{ $doctor->friday ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="border px-4 py-2">Sabtu</td>
-                                <td class="border px-4 py-2">{{ $doctor->saturday ?? '' }}</td>
-                            </tr>
+                        <td class="border px-4 py-2">Rabu</td>
+                        <td class="border px-4 py-2">{{ substr($doctor->wednesday, 0, 5) ?? '' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2">Kamis</td>
+                        <td class="border px-4 py-2">{{ substr($doctor->thursday, 0, 5) ?? '' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2">Jumat</td>
+                        <td class="border px-4 py-2">{{ substr($doctor->friday, 0, 5) ?? '' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2">Sabtu</td>
+                        <td class="border px-4 py-2">{{ substr($doctor->saturday, 0, 5) ?? '' }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
