@@ -3,6 +3,11 @@
 @section('title', 'Appointment')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     @if (session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
@@ -69,8 +74,8 @@
             <!-- Form Appointment -->
             <div class="lg:w-1/3 mt-10 lg:mt-0">
                 <h2 class="text-[#1E2B4F] text-3xl font-semibold leading-normal">
-                    Apply for <br />
-                    New Appointment
+                   <br> Ajukan  <br/>
+                    Penunjukan Baru
                 </h2>
 
                 <form action="{{ route('appointment.store') }}" method="POST" enctype="multipart/form-data" class="mt-8 space-y-5">
@@ -84,18 +89,14 @@
                             class="block w-full rounded-2xl py-4 text-[#1E2B4F] font-medium px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
                             placeholder="Tuliskan Keluhan Anda disini" required
                             rows="4" 
-                        ></textarea>
+                        >{{ old('complaint') }}</textarea>
                     </label>
 
                     <p class="text-[#AFAEC3] text-justify text-sm mt-2">Apabila Anda bingung untuk menentukan dokter untuk Keluhan anda silahkan untuk memilih dokter umum sebagai langkah awal dalam menentukan diagnosa anda</p>
                     
                     <label class="block">
                         <select
-                            name="level_id"
-                            id="level_id"
-                            class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                            placeholder="Layanan" required
-                        >
+                            name="level_id" id="level_id" class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]" placeholder="Layanan" required>
                             <option value="" disabled selected class="hidden">Layanan</option>
                             <option value="1">Umum</option>
                             <option value="2">BPJS</option>
@@ -103,56 +104,25 @@
                     </label>
 
                     <label class="relative block">
-                        <input
-                            type="text"
-                            id="date"
-                            name="date"
-                            class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0EFB71]"
-                            placeholder="Pilih Hari" required
-                        />
+                        <input type="text" id="date" name="date" class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0EFB71]"
+                        value="{{ old('date') }}" placeholder="Pilih Hari" required/>
                         <span
-                            class="absolute top-0 right-[11px] bottom-1/2 translate-y-[58%]"
-                        ><svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                            d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
-                            stroke="#AFAEC3"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            />
-                            <path
-                            d="M3 10H21"
-                            stroke="#AFAEC3"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            />
-                            <path
-                            d="M16 2V6"
-                            stroke="#AFAEC3"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            />
-                            <path
-                            d="M8 2V6"
-                            stroke="#AFAEC3"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            />
+                            class="absolute top-0 right-[11px] bottom-1/2 translate-y-[58%]">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 10H21" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 2V6" stroke="#AFAEC3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </span>
                     </label>
-                   
+
+                    
+                    
+
                     <input type="hidden" name="doctor_id" value="{{ $doctor->id ?? '' }}">
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    
                     <div class="grid">
                         <button type="submit" class="bg-[#0EFB71] rounded-full mt-5 text-white text-lg font-medium px-10 py-3 text-center" onclick="return confirm('Are you sure want to confirm this appointment ?')">Continue</button>
                     </div>
@@ -189,4 +159,8 @@
             ] 
         });
     </script>
+
+   
+
+
 @endpush

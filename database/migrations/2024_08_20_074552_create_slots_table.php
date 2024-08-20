@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConsultationTable extends Migration
+class CreateSlotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateConsultationTable extends Migration
      */
     public function up()
     {
-        Schema::create('consultation', function (Blueprint $table) {
+        Schema::create('slots', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->date('date')->unique();
+            $table->integer('total_slots')->default(10);
+            $table->integer('available_slots')->default(10);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateConsultationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consultation');
+        Schema::dropIfExists('slots');
     }
 }

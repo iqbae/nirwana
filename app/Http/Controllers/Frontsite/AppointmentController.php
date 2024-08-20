@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
+use RealRashid\SweetAlert\Facades\Alert;
 
 // use everything here
 // use Gate;
@@ -75,12 +76,20 @@ class AppointmentController extends Controller
         if (!$doctor) {
             return redirect()->back()->with('error', 'Dokter tidak ditemukan.');
         }
-    
         // Tentukan hari dalam minggu (misalnya, 'monday', 'Tuesday ', dll.)
         $day = strtolower(Carbon::parse($data['date'])->format('l'));
     
         // Dapatkan waktu mulai dokter untuk hari tertentu
         $start_time = Carbon::parse($doctor->$day, 'Asia/Jakarta');
+    
+        // Hitung jumlah antrian (queue_number) pada tanggal yang dipilih
+        $queueCount = Appointment::where('date', $data['date'])->count();
+
+        // Jika jumlah antrian sudah 10, maka kembalikan error
+        if ($queueCount >= 10) {
+            Alert::error('Error', 'Antrian sudah penuh untuk tanggal ini. Silakan pilih tanggal lain.');
+            return redirect()->back()->withInput();;
+        }
     
         // Dapatkan janji temu yang sudah ada untuk dokter pada tanggal tertentu
         $appointments = Appointment::where('doctor_id', $doctor->id)
@@ -132,6 +141,7 @@ class AppointmentController extends Controller
     {
         return abort(404);
     }
+
 
     /**
      * Show the form for editing the specified resource.

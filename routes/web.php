@@ -75,8 +75,7 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     // config payment
     Route::resource('config_payment', ConfigPaymentController::class);
 
-    // consultation
-    Route::resource('consultation', ConsultationController::class);
+
 
     // doctor
     Route::get('/doctor/cetakjadwal', [DoctorController::class, 'cetakjadwal'])->name('doctor.cetakjadwal');
