@@ -56,11 +56,17 @@
                             </div>
                         </div>
                         <!-- Text -->
-
+                        
                         <!-- CTA Button -->
                         <div class="grid lg:flex flex-wrap mt-10 gap-5">
+                            @guest
                             <a href="{{ route('register') }}" class="text-white text-lg font-medium text-center bg-[#0EFB71] rounded-full px-12 py-3">Daftar</a>
                             {{--  <a href="#" class="text-[#1E2B4F] text-lg font-medium text-center bg-[#F2F6FE] rounded-full px-16 py-3">Story</a>  --}}
+                            @endguest
+                            @auth
+                            <div class=" px-12 py-3"></div>
+                                
+                            @endauth
                         </div>
                         <!-- CTA Button -->
 

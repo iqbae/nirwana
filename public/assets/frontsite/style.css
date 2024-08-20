@@ -1930,4 +1930,29 @@ body {
   .lg\:pr-7 {
     padding-right: 1.75rem;
   }
+
+/* costume css */
+
+/* Border untuk setiap sel tabel */
+.table-class td, .table-class th {
+  border: 1px solid #d4d4d4; /* Border abu-abu */
+  padding: 8px; /* Padding untuk memberikan jarak di dalam sel */
+  text-align: center; /* Teks rata tengah */
+}
+
+/* Latar belakang untuk header tabel */
+.table-class th {
+  background-color: #f9f9f9; /* Latar belakang abu-abu muda untuk header */
+  font-weight: bold; /* Teks header tebal */
+}
+
+/* Latar belakang putih untuk tabel */
+.table-class {
+  background-color: white;
+}
+
+
+
+
+
 }

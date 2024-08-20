@@ -86,9 +86,12 @@ class AppointmentController extends Controller
         $queueCount = Appointment::where('date', $data['date'])->count();
 
         // Jika jumlah antrian sudah 10, maka kembalikan error
+        // if ($queueCount >= 10) {
+        //     Alert::error('Error', 'Antrian sudah penuh untuk tanggal ini. Silakan pilih tanggal lain.');
+        //     return redirect()->back()->withInput();;
+        // }
         if ($queueCount >= 10) {
-            Alert::error('Error', 'Antrian sudah penuh untuk tanggal ini. Silakan pilih tanggal lain.');
-            return redirect()->back()->withInput();;
+            return redirect()->back()->with('error', 'Antrian sudah penuh untuk tanggal ini. Silakan pilih tanggal lain.')->withInput();
         }
     
         // Dapatkan janji temu yang sudah ada untuk dokter pada tanggal tertentu

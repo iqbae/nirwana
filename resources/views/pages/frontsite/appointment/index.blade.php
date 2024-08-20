@@ -3,20 +3,11 @@
 @section('title', 'Appointment')
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+
 
     <!-- Content -->
     <div class="min-h-screen">
-        <div class="lg:max-w-7xl lg:flex items-center mx-auto px-4 lg:px-14 pt-6 py-20 lg:py-24 gap-x-24">
+        <div class="lg:max-w-7xl lg:flex items-center mx-auto px-4 lg:px-14 pt-1 py-20 pb-1 gap-x-24">
             <!-- Detail Doctor  -->
             @if(isset($doctor) && $doctor)
     <div class="lg:w-5/12 lg:border-r h-72 lg:h-[30rem] flex flex-col items-center justify-center text-center">
@@ -40,28 +31,41 @@
                 <tbody>
                     <tr>
                         <td class="border px-4 py-2">Senin</td>
-                        <td class="border px-4 py-2">{{ substr($doctor->monday, 0, 5) ?? '' }}</td>
+                        <td class="border px-4 py-2">
+                            {{ $doctor->monday == '00:00:00' ? 'Tutup' : substr($doctor->monday, 0, 5) }}
+                        </td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2">Selasa</td>
-                        <td class="border px-4 py-2">{{ substr($doctor->tuesday, 0, 5) ?? '' }}</td>
+                        <td class="border px-4 py-2">
+                            {{ $doctor->tuesday == '00:00:00' ? 'Tutup' : substr($doctor->tuesday, 0, 5) }}
+                        </td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2">Rabu</td>
-                        <td class="border px-4 py-2">{{ substr($doctor->wednesday, 0, 5) ?? '' }}</td>
+                        <td class="border px-4 py-2">
+                            {{ $doctor->wednesday == '00:00:00' ? 'Tutup' : substr($doctor->wednesday, 0, 5) }}
+                        </td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2">Kamis</td>
-                        <td class="border px-4 py-2">{{ substr($doctor->thursday, 0, 5) ?? '' }}</td>
+                        <td class="border px-4 py-2">
+                            {{ $doctor->thursday == '00:00:00' ? 'Tutup' : substr($doctor->thursday, 0, 5) }}
+                        </td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2">Jumat</td>
-                        <td class="border px-4 py-2">{{ substr($doctor->friday, 0, 5) ?? '' }}</td>
+                        <td class="border px-4 py-2">
+                            {{ $doctor->friday == '00:00:00' ? 'Tutup' : substr($doctor->friday, 0, 5) }}
+                        </td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2">Sabtu</td>
-                        <td class="border px-4 py-2">{{ substr($doctor->saturday, 0, 5) ?? '' }}</td>
+                        <td class="border px-4 py-2">
+                            {{ $doctor->saturday == '00:00:00' ? 'Tutup' : substr($doctor->saturday, 0, 5) }}
+                        </td>
                     </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -92,7 +96,7 @@
                         >{{ old('complaint') }}</textarea>
                     </label>
 
-                    <p class="text-[#AFAEC3] text-justify text-sm mt-2">Apabila Anda bingung untuk menentukan dokter untuk Keluhan anda silahkan untuk memilih dokter umum sebagai langkah awal dalam menentukan diagnosa anda</p>
+                    <p class="text-[#5c5c64] text-justify text-sm mt-2">Apabila Anda bingung untuk menentukan dokter untuk Keluhan anda silahkan untuk memilih dokter umum sebagai langkah awal dalam menentukan diagnosa anda</p>
                     
                     <label class="block">
                         <select
@@ -117,7 +121,11 @@
                     </span>
                     </label>
 
-                    
+                    @if (session('error'))
+                        <div class="alert text-justify text-sm" style="color: red;">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     
 
                     <input type="hidden" name="doctor_id" value="{{ $doctor->id ?? '' }}">
