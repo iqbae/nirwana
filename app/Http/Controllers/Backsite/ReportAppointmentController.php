@@ -126,13 +126,7 @@ class ReportAppointmentController extends Controller
 
         alert()->success('Success Message', 'Berhasil mengubah status pemabayaran');
         return redirect()->route('backsite.appointment.index');;
-        // abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        //     $appointment = Appointment::orderBy('created_at', 'desc')->get();
-        //     $doctor = Doctor::orderBy('name', 'asc')->get();
-
-
-        // return view('pages.backsite.operational.appointment.edit', compact('appointment', 'doctor'));
+        
     }
 
 

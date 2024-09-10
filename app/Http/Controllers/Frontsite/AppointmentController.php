@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Frontsite;
 
 use App\Http\Controllers\Controller;
 
+
 // use library here
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 // use everything here
 // use Gate;
 use Auth;
@@ -85,11 +87,6 @@ class AppointmentController extends Controller
         // Hitung jumlah antrian (queue_number) pada tanggal yang dipilih
         $queueCount = Appointment::where('date', $data['date'])->count();
 
-        // Jika jumlah antrian sudah 10, maka kembalikan error
-        // if ($queueCount >= 10) {
-        //     Alert::error('Error', 'Antrian sudah penuh untuk tanggal ini. Silakan pilih tanggal lain.');
-        //     return redirect()->back()->withInput();;
-        // }
         if ($queueCount >= 10) {
             return redirect()->back()->with('error', 'Antrian sudah penuh untuk tanggal ini. Silakan pilih tanggal lain.')->withInput();
         }
@@ -127,6 +124,10 @@ class AppointmentController extends Controller
         $appointment->queue_number = $queue_number; // Menetapkan nomor antrian
         $appointment->save();
     
+        // Kirim email konfirmasi
+        $user = Auth::user(); // Asumsi pengguna yang sedang login adalah pasien
+        Mail::to($user->email)->send(new SendEmail($appointment));
+
         // Respon sukses
         alert()->success('Sukses', 'Janji temu berhasil dijadwalkan');
         return redirect()->route('payment.appointment', $appointment->id);
@@ -191,17 +192,5 @@ class AppointmentController extends Controller
         return view('pages.frontsite.appointment.index', compact('doctor'));
     }  
     
- 
-    
-    // protected function schedule(Schedule $schedule)
-    // {
-    //     $schedule->call(function () {
-    //         $appointments = Appointment::whereDate('date', now()->toDateString())->get();
-    //         foreach ($appointments as $appointment) {
-    //             $user = $appointment->user;
-    //             $user->notify(new AppointmentReminder($appointment));
-    //         }
-    //     })->daily();
-    // }
 
 }

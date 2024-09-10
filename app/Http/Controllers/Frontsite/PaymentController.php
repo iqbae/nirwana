@@ -94,9 +94,9 @@ class PaymentController extends Controller
         $transaction->save();
 
         // update status appointment
-        $appointment = Appointment::find($appointment->id);
-        $appointment->status = 2; // set to non completed payment
-        $appointment->save();
+        // $appointment = Appointment::find($appointment->id);
+        // $appointment->status = 2; // set to non completed payment
+        // $appointment->save();
 
         return redirect()->route('payment.success');
     }

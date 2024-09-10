@@ -63,15 +63,15 @@
                                     <table class="table table-striped table-bordered text-inputs-searching default-table">
                                         <thead>
                                             <tr>
-                                                <th>recorded</th>
-                                                <th>Doctor</th>
-                                                <th>Patient</th>
-                                                <th>Complaint</th>
-                                                <th>Level</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Direkam</th>
+                                                <th>Dokter</th>
+                                                <th>Nama</th>
+                                                <th>Keluhan</th>
+                                                <th>Jaminan</th></th>
+                                                <th>Tanggal</th>
+                                                <th>Jam</th>
+                                                <th>Status bayar</th></th>
+                                                
                                             </tr>
                                         </thead>
 
@@ -107,17 +107,7 @@
                                                         <span>{{ 'N/A' }}</span>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-info btn-sm dropdown-toggle"
-                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Action
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <!-- Dropdown Actions -->
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                                
                                             </tr>
                                         @empty
                                             <!-- No Appointments -->

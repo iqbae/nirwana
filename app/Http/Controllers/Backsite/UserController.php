@@ -137,23 +137,34 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserRequest $request, User $user)
-    {
-        // get all request from frontsite
-        $data = $request->all();
+{
+    // get all request from frontsite
+    $data = $request->all();
 
-        // update to database
-        $user->update($data);
+    // update to database
+    $user->update($data);
 
-        // update roles
-        $user->role()->sync($request->input('role', []));
+    // update roles
+    $user->role()->sync($request->input('role', []));
 
-        // save to detail user , to set type user
-        $detail_user = DetailUser::find($user['id']);
-        $detail_user->type_user_id = $request['type_user_id'];
-        $detail_user->save();
+    // Try to find existing detail_user
+    $detail_user = DetailUser::where('user_id', $user->id)->first();
 
-        alert()->success('Success Message', 'Successfully updated user');
-        return redirect()->route('backsite.user.index');
+    // If detail_user is not found, create a new instance
+    if (!$detail_user) {
+        $detail_user = new DetailUser;
+        $detail_user->user_id = $user->id;
+    }
+
+    // Update or set the type_user_id
+    $detail_user->type_user_id = $request['type_user_id'];
+
+    // Save the detail_user record
+    $detail_user->save();
+
+    alert()->success('Success Message', 'Successfully updated user');
+    return redirect()->route('backsite.user.index');
+
     }
 
     /**
